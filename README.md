@@ -3,7 +3,7 @@
 Lucas Arins Campos
 Rafael Feliz
 ## propostas de projeto 
- -  sitema para loja 
+ -  sistema para loja 
  - estoque
  - cadastra protudo/cliente
  - pagamento 
