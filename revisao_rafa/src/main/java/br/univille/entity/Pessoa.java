@@ -1,15 +1,24 @@
 package br.univille.entity;
 
 import java.security.PublicKey;
+import java.util.ArrayList;
 
 public class Pessoa {
     // atributo (variavel)
     private long id;
     private String endereco;
     private String nome;
-
-
     private Cidade cidade;
+
+    private ArrayList listaPokemon = new ArrayList<Pokemon>(); //especifiquei que pode aceitar somente Pokemon
+
+    public ArrayList<Pokemon> getListaPokemon() {
+        return listaPokemon;
+    }
+
+    public void setListaPokemon(ArrayList<Pokemon> listaPokemon) {
+        this.listaPokemon = listaPokemon;
+    }
 
     public Cidade getCidade() {
         return cidade;
