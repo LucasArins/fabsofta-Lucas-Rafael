@@ -88,3 +88,7 @@ gitignore e pro git ignorar
 -JDK -  JAVA DEVELOPER KIT (JAVAC.EXE) (jre + javac(compilador de codigo))
 -COMPILAR O CIDGIO JAVA EM BYTECODE(.class)
 - JAVA CQUE COLOCA COMPILA O CODIGO 
+
+
+-> ou com risco cheio
+variavel

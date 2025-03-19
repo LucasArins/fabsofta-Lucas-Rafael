@@ -1,12 +1,42 @@
-package br.univille;
+package br.univille.entity;
 
 import java.security.PublicKey;
 
 public class Pessoa {
     // atributo (variavel)
+    private long id;
+    private String endereco;
     private String nome;
 
-    // Consultor (mesmo nome da classe, nao tem classe, nao tem retorno)
+
+    private Cidade cidade;
+
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    // Construtor (mesmo nome da classe, nao tem classe, nao tem retorno)
     public Pessoa(String nome) {
         // this diferencia a classe
         this.nome= nome;
