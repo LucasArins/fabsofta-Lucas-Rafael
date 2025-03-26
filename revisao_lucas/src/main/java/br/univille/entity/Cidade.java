@@ -1,3 +1,4 @@
+
 package br.univille.entity;
 
 public class Cidade {
@@ -23,5 +24,6 @@ public class Cidade {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
     
 }

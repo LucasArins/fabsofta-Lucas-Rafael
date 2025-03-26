@@ -1,41 +1,49 @@
 package br.univille;
 
+import java.util.Arrays;
+
+import br.univille.entity.Cidade;
 import br.univille.entity.Pessoa;
 import br.univille.entity.Pokemon;
-import br.univille.entity.Cidade;
+
 
 public class App {
-    public static void main(String[] args) {
-        //System.out.println("Hello world!");
+    public static void main(String[] args) throws Exception {
+        //System.out.println("Hello, World!");
+        //Instância
+        Cidade jlle = new Cidade();
+        jlle.setNome("Joinville");
+        jlle.setEstado("Santa Catarina");
+        
+        Pokemon jigglypuff = new Pokemon("JigglyPuff");
+        Pokemon porygon= new Pokemon("Porygon");
 
-        Cidade joinville = new Cidade();
-        joinville.setNome("Joinville");
-        joinville.setEstado("Santa Catarina");
-        
-        Pokemon jigglypuff = new Pokemon("Jigglypuff");
-        Pokemon porygon = new Pokemon("Porygon");
-        
-        Pessoa zezinho = new Pessoa ("Zezinho");
+        Pessoa mariazinha = new Pessoa("Mariazinha");
+        Pessoa zezinho = new Pessoa();
+        zezinho.setNome("Zezinho");
+        zezinho.setCidade(jlle);
+        zezinho.getListaPokemon().add(jigglypuff);
+        zezinho.getListaPokemon().add(porygon);
+        //zezinho.getListaPokemon().add(123);
+        //zezinho.getListaPokemon().add(112.2);
+        //zezinho.getListaPokemon().add("eu nao acredito");
+        //zezinho.getListaPokemon().add(true);
+        //zezinho.getListaPokemon().add('a');
+
         for(int i=0;i<zezinho.getListaPokemon().size();i++){
             System.out.println(zezinho.getListaPokemon().get(i));
         }
-        for(Pokemon umPokemon)
 
-        zezinho.setNome("Zezinho da silva Sauro");
-        zezinho.setCidade(joinville);
-
-        zezinho.getListaPokemon().add(jigglypuff);
-        zezinho.getListaPokemon().add(porygon);
-        for(var umPokemon : zezinho.getListaPokemon()){
+        for(Pokemon umPokemon : zezinho.getListaPokemon()){
             System.out.println(umPokemon);
         }
+        zezinho.getListaPokemon().stream().forEach(System.out::println);
+        
 
-
-        Pessoa mariazinha = new Pessoa ();
-        mariazinha.setNome("Mariazinha");
-
-
-        System.out.println(zezinho);
         System.out.println(mariazinha);
+        System.out.println(zezinho);
+
+
+
     }
 }

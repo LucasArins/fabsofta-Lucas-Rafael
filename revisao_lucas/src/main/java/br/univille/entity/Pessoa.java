@@ -1,23 +1,43 @@
+
 package br.univille.entity;
 
 import java.util.ArrayList;
 
 public class Pessoa {
     //atributo (variável)
+    private long id;
     private String nome;
-    private  long id;
     private String endereco;
-    private ArrayList listaPokemon;
 
-    public ArrayList getListaPokemon() {
+    private Cidade cidade;
+
+    private ArrayList<Pokemon> listaPokemon = new ArrayList<Pokemon>();
+
+
+    public ArrayList<Pokemon> getListaPokemon() {
         return listaPokemon;
     }
-    public void setListaPokemon(ArrayList listaPokemon) {
+    public void setListaPokemon(ArrayList<Pokemon> listaPokemon) {
         this.listaPokemon = listaPokemon;
     }
-    public long getid(){
+        
+    public Cidade getCidade() {
+        return cidade;
+    }
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+    public long getId() {
         return id;
-
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
+    public String getEndereco() {
+        return endereco;
+    }
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
     //Construtor (mesmo nome da classe, não tem retorno)
     public Pessoa(String nome) {
@@ -41,7 +61,8 @@ public class Pessoa {
     @Override
     public String toString(){
         
-        return super.toString() + getNome();
+        return getNome();
     }
+    
     
 }
