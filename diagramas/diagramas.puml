@@ -1,0 +1,56 @@
+@startuml
+skinparam classAttributeIconSize 0
+caption Diagrama de Classes - br.univille.projfabsoft.entity
+package br.univille.projfabsoft.entity {
+    class Cliente {
+        - Long id
+        - String nome
+        - String celular
+        - String endereco
+        - String cpf
+        - List<Pedido> pedidos
+        - List<Produto> favoritos
+    }
+
+    class Produto {
+        - Long id
+        - String nome
+        - String descricao
+        - double preco
+        - int quantidadeEstoque
+    }
+
+    class Pedido {
+        - Long id
+        - Cliente cliente
+        - List<Produto> produtos
+        - double total
+    }
+
+    class Carrinho {
+        - Long id
+        - Cliente cliente
+        - List<Produto> produtos
+    }
+
+    class Favorito {
+        - Long id
+        - Cliente cliente
+        - Produto produto
+    }
+
+    class Administrador {
+        - Long id
+        - String nome
+        - String email
+    }
+
+    Cliente "1" -- "0..*" Pedido
+    Cliente "1" -- "0..*" Produto : favoritos
+    Pedido "1" -- "0..*" Produto
+    Carrinho "1" -- "0..*" Produto
+    Carrinho "1" -- "1" Cliente
+    Favorito "1" -- "1" Cliente
+    Favorito "1" -- "1" Produto
+}
+@enduml

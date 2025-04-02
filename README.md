@@ -26,7 +26,8 @@ gitignore e pro git ignorar
 -COMPILAR O CIDGIO JAVA EM BYTECODE(.class)
 - JAVA CQUE COLOCA COMPILA O CODIGO 
 
---Histórias de Usuário para o Cliente-- Acesso ao Carrinho de Compras: Como um cliente, eu gostaria de acessar o meu carrinho de compras a qualquer momento, para poder visualizar e editar os itens que adicionei antes de finalizar a compra.
+--Histórias de Usuário para o Cliente-- 
+Acesso ao Carrinho de Compras: Como um cliente, eu gostaria de acessar o meu carrinho de compras a qualquer momento, para poder visualizar e editar os itens que adicionei antes de finalizar a compra.
 
 Adicionar Produtos ao Carrinho: Como um cliente, eu gostaria de poder adicionar produtos ao meu carrinho de compras facilmente, para que eu possa comprar vários itens sem precisar finalizar a compra de imediato.
 
@@ -36,7 +37,11 @@ Adicionar Produtos aos Favoritos: Como um cliente, eu gostaria de poder adiciona
 
 Remover Itens dos Favoritos: Como um cliente, eu gostaria de poder remover produtos da minha lista de favoritos, caso eu não tenha mais interesse neles ou já os tenha adquirido.
 
+Pesquisas Itens: Como um Cliente, eu gostaria de procurar produtos pelo nome no site
+
 Criar um Cadastro no Site: Como um cliente, eu gostaria de criar um cadastro no site com informações pessoais como nome, celular, endereço e CPF, para que eu possa facilitar o processo de compras e receber atualizações de pedidos.
+
+Alterar Credencias de cadastro no site: Como um cliente, eu gostaria de poder alterar as credencias que estão presentes no meu cadastro, comoome, celular, endereço e CPF.
 
 Avaliar Produtos Comprados: Como um cliente, eu gostaria de poder avaliar os produtos que comprei, para compartilhar minha experiência com outros usuários e ajudar na decisão de compra de outros clientes.
 
