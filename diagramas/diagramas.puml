@@ -10,6 +10,20 @@ package br.univille.projfabsoft.entity {
         - String cpf
         - List<Pedido> pedidos
         - List<Produto> favoritos
+        + Long getId()
+        + void setId(Long id)
+        + String getNome()
+        + void setNome(String nome)
+        + String getCelular()
+        + void setCelular(String celular)
+        + String getEndereco()
+        + void setEndereco(String endereco)
+        + String getCpf()
+        + void setCpf(String cpf)
+        + List<Pedido> getPedidos()
+        + void setPedidos(List<Pedido> pedidos)
+        + List<Produto> getFavoritos()
+        + void setFavoritos(List<Produto> favoritos)
     }
 
     class Produto {
@@ -18,6 +32,16 @@ package br.univille.projfabsoft.entity {
         - String descricao
         - double preco
         - int quantidadeEstoque
+        + Long getId()
+        + void setId(Long id)
+        + String getNome()
+        + void setNome(String nome)
+        + String getDescricao()
+        + void setDescricao(String descricao)
+        + double getPreco()
+        + void setPreco(double preco)
+        + int getQuantidadeEstoque()
+        + void setQuantidadeEstoque(int quantidadeEstoque)
     }
 
     class Pedido {
@@ -25,24 +49,50 @@ package br.univille.projfabsoft.entity {
         - Cliente cliente
         - List<Produto> produtos
         - double total
+        + Long getId()
+        + void setId(Long id)
+        + Cliente getCliente()
+        + void setCliente(Cliente cliente)
+        + List<Produto> getProdutos()
+        + void setProdutos(List<Produto> produtos)
+        + double getTotal()
+        + void setTotal(double total)
     }
 
     class Carrinho {
         - Long id
         - Cliente cliente
         - List<Produto> produtos
+        + Long getId()
+        + void setId(Long id)
+        + Cliente getCliente()
+        + void setCliente(Cliente cliente)
+        + List<Produto> getProdutos()
+        + void setProdutos(List<Produto> produtos)
     }
 
     class Favorito {
         - Long id
         - Cliente cliente
         - Produto produto
+        + Long getId()
+        + void setId(Long id)
+        + Cliente getCliente()
+        + void setCliente(Cliente cliente)
+        + Produto getProduto()
+        + void setProduto(Produto produto)
     }
 
     class Administrador {
         - Long id
         - String nome
         - String email
+        + Long getId()
+        + void setId(Long id)
+        + String getNome()
+        + void setNome(String nome)
+        + String getEmail()
+        + void setEmail(String email)
     }
 
     Cliente "1" -- "0..*" Pedido
