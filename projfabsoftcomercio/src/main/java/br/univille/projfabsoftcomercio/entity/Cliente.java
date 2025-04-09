@@ -1,67 +1,87 @@
-package br.univille.projfabsoft.entity;
+package br.univille.projfabsoftcomercio.entity;
 
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.CascadeType;
+
 @Entity
 public class Cliente {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String nome;
+    private String celular;
+    private String endereco;
+    private String cpf;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Pedido> pedidos;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Favorito> favoritos;
+
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
 
-    private String nome;
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    private String celular;
     public String getCelular() {
         return celular;
     }
+
     public void setCelular(String celular) {
         this.celular = celular;
-
     }
-    private String endereco;
+
     public String getEndereco() {
         return endereco;
     }
+
     public void setEndereco(String endereco) {
         this.endereco = endereco;
-
     }
-    private String cpf;
+
     public String getCpf() {
         return cpf;
     }
+
     public void setCpf(String cpf) {
         this.cpf = cpf;
-
     }
-    private List<Pedido> pedidos;
+
     public List<Pedido> getPedidos() {
         return pedidos;
     }
+
     public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
-
     }
-    private List<Produto> favoritos;
-    public List<Produto> getFavoritos() {
+
+    public List<Favorito> getFavoritos() {
         return favoritos;
     }
-    public void setFavoritos(List<Produto> favoritos) {
+
+    public void setFavoritos(List<Favorito> favoritos) {
         this.favoritos = favoritos;
     }
 }
