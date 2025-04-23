@@ -11,3 +11,17 @@ Content-Type: application/json
     "celular": "5555-4444",
     "cpf": "12169556910"
 }
+
+### API CLIENTE PUT
+PUT http://localhost:8080/ap1/v1/clientes/1
+Content-Type: application/json
+
+{
+    "nome": "zezinho da silva",
+    "endereco": "rua tralalelo",
+    "celular": "6666-7777",
+    "cpf": "12269567910"
+}
+
+### API CLIENTE DELETE 
+DELETE http://localhost:8080/ap1/v1/clientes/1
