@@ -1,2 +1,13 @@
 ### API CLIENTE GET
 GET http://localhost:8080/ap1/v1/clientes
+
+### API CLIENTE POST
+POST http://localhost:8080/ap1/v1/clientes
+Content-Type: application/json
+
+{
+    "nome": "zezinho",
+    "endereco": "rua lalala",
+    "celular": "5555-4444",
+    "cpf": "12169556910"
+}
