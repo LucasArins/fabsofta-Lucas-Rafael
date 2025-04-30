@@ -1,5 +1,6 @@
 package br.univille.projfabsoftcomercio.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
@@ -27,7 +28,7 @@ public class Cliente {
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<Favorito> favoritos;
+    private List<Favorito> favoritos = new ArrayList<>();
 
     public long getId() {
         return id;

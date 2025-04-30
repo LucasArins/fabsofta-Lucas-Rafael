@@ -1,27 +1,203 @@
-### API CLIENTE GET
+### API CLIENTE - GET
 GET http://localhost:8080/ap1/v1/clientes
 
-### API CLIENTE POST
+### API CLIENTE - POST
 POST http://localhost:8080/ap1/v1/clientes
 Content-Type: application/json
 
 {
-    "nome": "zezinho",
-    "endereco": "rua lalala",
-    "celular": "5555-4444",
-    "cpf": "12169556910"
+    "nome": "João Silva",
+    "endereco": "Rua das Flores, 123",
+    "celular": "99999-8888",
+    "cpf": "12345678901"
 }
 
-### API CLIENTE PUT
+### API CLIENTE - PUT
 PUT http://localhost:8080/ap1/v1/clientes/1
 Content-Type: application/json
 
 {
-    "nome": "zezinho da silva",
-    "endereco": "rua tralalelo",
-    "celular": "6666-7777",
-    "cpf": "12269567910"
+    "nome": "João Silva Atualizado",
+    "endereco": "Rua das Palmeiras, 456",
+    "celular": "88888-7777",
+    "cpf": "12345678901"
 }
 
-### API CLIENTE DELETE 
+### API CLIENTE - DELETE
 DELETE http://localhost:8080/ap1/v1/clientes/1
+
+---
+
+### API CARRINHO - GET
+GET http://localhost:8080/ap1/v1/carrinho
+
+### API CARRINHO - POST
+POST http://localhost:8080/ap1/v1/carrinho
+Content-Type: application/json
+
+{
+    "cliente": {
+        "id": 1,
+        "nome": "João Silva",
+        "celular": "99999-8888",
+        "endereco": "Rua das Flores, 123",
+        "cpf": "12345678901",
+        "pedidos": null,
+        "favoritos": []
+    },
+    "produtos": [
+        {
+            "id": 1,
+            "nome": "Produto A",
+            "descricao": "Descrição do Produto A",
+            "preco": 100.5,
+            "quantidadeEstoque": 10
+        }
+        
+    ]
+
+
+}
+
+
+### API CARRINHO - PUT
+PUT http://localhost:8080/ap1/v1/carrinho/1
+Content-Type: application/json
+
+{
+    "cliente": {
+        "id": 1
+    },
+    "produtos": [
+        {
+            "id": 3
+        }
+    ]
+}
+
+### API CARRINHO - DELETE
+DELETE http://localhost:8080/ap1/v1/Carrinho/1
+
+---
+
+### API PRODUTO - GET
+GET http://localhost:8080/ap1/v1/produto
+
+### API PRODUTO - POST
+POST http://localhost:8080/ap1/v1/produto
+Content-Type: application/json
+
+{
+    "nome": "Produto A",
+    "descricao": "Descrição do Produto A",
+    "preco": 100.50,
+    "quantidadeEstoque": 10
+}
+
+### API PRODUTO - PUT
+PUT http://localhost:8080/ap1/v1/produto/1
+Content-Type: application/json
+
+{
+    "nome": "Produto A Atualizado",
+    "descricao": "Descrição atualizada do Produto A",
+    "preco": 120.00,
+    "quantidadeEstoque": 15
+}
+
+### API PRODUTO - DELETE
+DELETE http://localhost:8080/ap1/v1/Produto/1
+
+---
+
+### API FAVORITO - GET
+GET http://localhost:8080/ap1/v1/favorito
+
+### API FAVORITO - POST
+POST http://localhost:8080/ap1/v1/favorito
+Content-Type: application/json
+
+{
+    "cliente": {
+        "id": 1
+    },
+    "produto": {
+        "id": 1
+    }
+}
+
+### API FAVORITO - DELETE
+DELETE http://localhost:8080/ap1/v1/Favorito/1
+
+---
+
+### API PEDIDO - GET
+GET http://localhost:8080/ap1/v1/Pedido
+
+### API PEDIDO - POST
+POST http://localhost:8080/ap1/v1/Pedido
+Content-Type: application/json
+
+{
+    "cliente": {
+        "id": 1
+    },
+    "produtos": [
+        {
+            "id": 1
+        },
+        {
+            "id": 2
+        }
+    ],
+    "total": 200.00
+}
+
+### API PEDIDO - PUT
+PUT http://localhost:8080/ap1/v1/Pedido/1
+Content-Type: application/json
+
+{
+    "cliente": {
+        "id": 1
+    },
+    "produtos": [
+        {
+            "id": 3
+        }
+    ],
+    "total": 300.00
+}
+
+### API PEDIDO - DELETE
+DELETE http://localhost:8080/ap1/v1/Pedido/1
+
+---
+
+### API ADMINISTRADOR - GET
+GET http://localhost:8080/ap1/v1/Administrador
+
+### API ADMINISTRADOR - POST
+POST http://localhost:8080/ap1/v1/Administrador
+Content-Type: application/json
+
+{
+    "nome": "Administrador A",
+    "email": "admin@empresa.com"
+}
+
+### API ADMINISTRADOR - PUT
+PUT http://localhost:8080/ap1/v1/Administrador/1
+Content-Type: application/json
+
+{
+    "nome": "Administrador A Atualizado",
+    "email": "admin@empresa.com"
+}
+
+### API ADMINISTRADOR - DELETE
+DELETE http://localhost:8080/ap1/v1/Administrador/1
+
+
+
+

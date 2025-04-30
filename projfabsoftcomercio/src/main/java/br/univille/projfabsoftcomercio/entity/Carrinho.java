@@ -1,5 +1,6 @@
 package br.univille.projfabsoftcomercio.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.CascadeType;
@@ -19,12 +20,11 @@ public class Carrinho {
     private long id;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-    @JsonBackReference
     private Cliente cliente;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn
-    private List<Produto> produtos;
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "carrinho_id")
+    private List<Produto> produtos = new ArrayList<>();
 
     public long getId() {
         return id;

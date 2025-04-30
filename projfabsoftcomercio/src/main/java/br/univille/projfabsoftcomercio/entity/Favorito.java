@@ -15,7 +15,7 @@ public class Favorito {
     private long id;
 
     @ManyToOne
-    @JsonBackReference
+   
     private Cliente cliente;
 
     @ManyToOne
