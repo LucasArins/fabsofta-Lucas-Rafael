@@ -155,10 +155,7 @@ Content-Type: application/json
     },
     "produtos": [
         {
-            "id": 3
-        },
-        {
-            "id": 1
+            "id": 2
         }
     ],
     "total": 200.00
