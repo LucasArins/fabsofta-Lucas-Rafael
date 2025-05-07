@@ -37,7 +37,7 @@ Content-Type: application/json
 
 {
     "cliente": {
-        "id": 1,
+        "id": 2,
         "nome": "João Silva",
         "celular": "99999-8888",
         "endereco": "Rua das Flores, 123",
@@ -65,18 +65,29 @@ PUT http://localhost:8080/ap1/v1/carrinho/1
 Content-Type: application/json
 
 {
-    "cliente": {
-        "id": 1
+  "cliente": {
+        "id": 2,
+        "nome": "João Silva",
+        "celular": "99999-8888",
+        "endereco": "Rua das Flores, 123",
+        "cpf": "12345678901",
+        "pedidos": null,
+        "favoritos": []
     },
     "produtos": [
         {
-            "id": 3
+            "id": 3,
+            "nome": "Produto A",
+            "descricao": "Descrição do Produto A",
+            "preco": 120.5,
+            "quantidadeEstoque": 10
         }
+        
     ]
 }
 
 ### API CARRINHO - DELETE
-DELETE http://localhost:8080/ap1/v1/Carrinho/1
+DELETE http://localhost:8080/ap1/v1/carrinho/1
 
 ---
 
@@ -106,7 +117,7 @@ Content-Type: application/json
 }
 
 ### API PRODUTO - DELETE
-DELETE http://localhost:8080/ap1/v1/Produto/1
+DELETE http://localhost:8080/ap1/v1/produto/1
 
 ---
 
@@ -119,42 +130,42 @@ Content-Type: application/json
 
 {
     "cliente": {
-        "id": 1
+        "id": 2
     },
     "produto": {
-        "id": 1
+        "id": 3
     }
 }
 
 ### API FAVORITO - DELETE
-DELETE http://localhost:8080/ap1/v1/Favorito/1
+DELETE http://localhost:8080/ap1/v1/favorito/1
 
 ---
 
 ### API PEDIDO - GET
-GET http://localhost:8080/ap1/v1/Pedido
+GET http://localhost:8080/ap1/v1/pedido
 
 ### API PEDIDO - POST
-POST http://localhost:8080/ap1/v1/Pedido
+POST http://localhost:8080/ap1/v1/pedido
 Content-Type: application/json
 
 {
     "cliente": {
-        "id": 1
+        "id": 2
     },
     "produtos": [
         {
-            "id": 1
+            "id": 3
         },
         {
-            "id": 2
+            "id": 1
         }
     ],
     "total": 200.00
 }
 
 ### API PEDIDO - PUT
-PUT http://localhost:8080/ap1/v1/Pedido/1
+PUT http://localhost:8080/ap1/v1/pedido/1
 Content-Type: application/json
 
 {
@@ -170,15 +181,15 @@ Content-Type: application/json
 }
 
 ### API PEDIDO - DELETE
-DELETE http://localhost:8080/ap1/v1/Pedido/1
+DELETE http://localhost:8080/ap1/v1/pedido/1
 
 ---
 
 ### API ADMINISTRADOR - GET
-GET http://localhost:8080/ap1/v1/Administrador
+GET http://localhost:8080/ap1/v1/administrador
 
 ### API ADMINISTRADOR - POST
-POST http://localhost:8080/ap1/v1/Administrador
+POST http://localhost:8080/ap1/v1/administrador
 Content-Type: application/json
 
 {
@@ -187,7 +198,7 @@ Content-Type: application/json
 }
 
 ### API ADMINISTRADOR - PUT
-PUT http://localhost:8080/ap1/v1/Administrador/1
+PUT http://localhost:8080/ap1/v1/administrador/1
 Content-Type: application/json
 
 {
@@ -196,7 +207,7 @@ Content-Type: application/json
 }
 
 ### API ADMINISTRADOR - DELETE
-DELETE http://localhost:8080/ap1/v1/Administrador/1
+DELETE http://localhost:8080/ap1/v1/administrador/1
 
 
 
