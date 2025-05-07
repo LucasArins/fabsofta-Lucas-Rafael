@@ -26,4 +26,4 @@ jobs:
       - name: Build and Push Docker Image
         run: |
           docker build -t ghcr.io/lucasarins/fabsofta-lucas-rafael/projfabsoftcomercio ./projfabsoftcomercio
-          docker push ghcr.io/lucasarins/fabsofta-lucas-rafael/projfabsoft:latest
+          docker push ghcr.io/lucasarins/fabsofta-lucas-rafael/projfabsoftcomercio:latest
