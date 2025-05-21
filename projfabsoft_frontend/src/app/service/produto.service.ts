@@ -10,7 +10,7 @@ export class ProdutoService {
   apiURL= "https://localhost:8080/ap1/v1/produtos";
   constructor(private http:HttpClient) { }
 
-  getProduto(){
+  getProdutos(){
     return this.http.get<Produto[]>(this.apiURL);
   }
 }

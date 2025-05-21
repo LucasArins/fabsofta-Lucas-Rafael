@@ -16,7 +16,7 @@ export class ProdutoComponent {
     ){}
 
     ngOnInit(): void {
-      this.produtoService.getProduto().subscribe ( resposta => {
+      this.produtoService.getProdutos().subscribe ( resposta => {
         this.listaProdutos = resposta;
       })
 
