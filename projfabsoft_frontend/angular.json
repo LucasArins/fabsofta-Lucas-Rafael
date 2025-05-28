@@ -31,7 +31,12 @@
               "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": [
+
+              
               "node_modules/bootstrap/dist/js/bootstrap.js"
+
+              "node_modules/bootstrap/dist/css/bootstrap.js"
+
             ]
           },
           "configurations": {
@@ -95,5 +100,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "bff18d99-cfd9-4d96-9d78-d5bf4a3eee4f"
   }
 }
