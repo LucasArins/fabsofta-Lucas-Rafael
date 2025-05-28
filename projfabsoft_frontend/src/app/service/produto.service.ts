@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProdutoService {
-  apiURL= "https://localhost:8080/ap1/v1/produtos";
+  apiURL= "http://localhost:8080/ap1/v1/produto";
   constructor(private http:HttpClient) { }
 
   getProdutos(){

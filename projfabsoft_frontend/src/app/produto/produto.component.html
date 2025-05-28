@@ -1,6 +1,15 @@
 <main class="container">
-    <h2>Produto</h2>
+    <h2>Produtos</h2>
     <table class="table">
-
+        <thead>
+            <tr>
+                <th>Nome</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let umProduto of listaProdutos">
+                <td>{{umProduto.nome}}</td>
+            </tr>
+        </tbody>
     </table>
 </main>
