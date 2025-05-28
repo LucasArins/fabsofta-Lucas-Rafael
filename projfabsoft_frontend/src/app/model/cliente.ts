@@ -3,6 +3,6 @@ export class Cliente {
     nome: string;
     celular: string;
     cpf: string;
-    enderco: string;
+    endereco: string;
     
 }

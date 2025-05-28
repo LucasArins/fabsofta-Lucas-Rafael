@@ -1,8 +1,23 @@
 <main class="container">
-    <h2>
-        Clientes 
-    </h2>
+    <h2>Clientes</h2>
     <table class="table">
-
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>endereco</th>
+                <th>celular</th>
+                <th>id</th>
+                <th>cpf</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let umCliente of listaClientes">
+                <td>{{umCliente.nome}}</td>
+                <td>{{umCliente.endereco}}</td>
+                <td>{{umCliente.celular}}</td>
+                <td>{{umCliente.id}}</td>
+                <td>{{umCliente.cpf}}</td>
+            </tr>
+        </tbody>
     </table>
 </main>
