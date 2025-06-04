@@ -13,4 +13,7 @@ export class ProdutoService {
   getProdutos(){
     return this.http.get<Produto[]>(this.apiURL);
   }
+  saveProduto(produto:Produto){
+    return this.http.post(this.apiURL,produto);
+  }
 }
