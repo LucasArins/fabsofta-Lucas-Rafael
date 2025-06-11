@@ -9,6 +9,7 @@
                 <th>celular</th>
                 <th>id</th>
                 <th>cpf</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -18,6 +19,11 @@
                 <td>{{umCliente.celular}}</td>
                 <td>{{umCliente.id}}</td>
                 <td>{{umCliente.cpf}}</td>
+                <td><a (click)="alterar(umCliente)"
+                    class="btn btn-secondary">Alterar</a> 
+                            
+
+                </td>
             </tr>
         </tbody>
     </table>
