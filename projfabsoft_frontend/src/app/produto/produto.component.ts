@@ -3,7 +3,7 @@ import { Produto } from '../model/produto';
 import { ProdutoService } from '../service/produto.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-produto',
@@ -13,14 +13,21 @@ import { RouterLink } from '@angular/router';
   providers: [ProdutoService]
 })
 export class ProdutoComponent {
-  listaProdutos: Produto[] = []
 
-    constructor(private produtoService: ProdutoService) {}
 
-    ngOnInit() {
-      console.log("Carregando produtos...");
+      public listaProdutos: Produto[] = []
+
+    constructor(
+      private produtoService: ProdutoService,
+      private router:Router) {}
+
+    ngOnInit(): void {
       this.produtoService.getProdutos().subscribe ( produtos => {
         this.listaProdutos = produtos;
       });
+    }
+
+    novo(){
+      this.router.navigate(['produtos/novo']);
     }
 }
