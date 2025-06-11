@@ -7,5 +7,8 @@ import { FormCarrinhoComponent } from './form-carrinho/form-carrinho.component'
 export const routes: Routes = [
     { path: 'produtos', component: ProdutoComponent },
     { path: 'produtos/novo', component: FormProdutoComponent},
+    { path: 'produtos/alterar/:id', component: FormProdutoComponent},
     { path: 'carrinhos', component: CarrinhoComponent},
+    { path: 'carrinhos/novo', component: FormCarrinhoComponent},
+    { path: 'carrinhos/alterar/:id', component: FormCarrinhoComponent},
 ];

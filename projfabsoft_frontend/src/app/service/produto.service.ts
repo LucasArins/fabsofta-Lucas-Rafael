@@ -14,6 +14,14 @@ export class ProdutoService {
     return this.http.get<Produto[]>(this.apiURL);
   }
   saveProduto(produto:Produto){
+    if (produto.id){
+      console.log("PUT");
+      return this.http.put(this.apiURL + '/' + produto.id, produto);
+    }
+    console.log("POST");
     return this.http.post(this.apiURL,produto);
+  }
+  getProdutoById(id: any){
+    return this.http.get<Produto>(this.apiURL + '/' + id);
   }
 }

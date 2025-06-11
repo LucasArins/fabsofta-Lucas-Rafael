@@ -1,14 +1,23 @@
 <main class="container">
-    <h2>Carrinhos</h2>
+    <h2>Carrinho</h2>
+    <a (click)="novo()" class="btn btn-primary">Novo</a>
     <table class="table">
         <thead>
             <tr>
                 <th>Nome</th>
+                <th>Preço</th>
+                <th>Descrição</th>
+                <th>Quantidade em Estoque</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let umCarrinho of listaCarrinho">
-                <td>{{umCarrinho.id}}</td> #ajustar
+                <td>{{umCarrinho.id}}</td>
+                <td>{{umCarrinho.cliente.nome}}</td>
+                <td>{{umCarrinho.produtos}}</td>
+                <td><a (click)="alterar(umCarrinho)"
+                    class="btn btn-secondary">Alterar</a></td>
             </tr>
         </tbody>
     </table>

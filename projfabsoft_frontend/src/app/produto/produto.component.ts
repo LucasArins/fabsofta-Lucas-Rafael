@@ -3,11 +3,11 @@ import { Produto } from '../model/produto';
 import { ProdutoService } from '../service/produto.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-produto',
-  imports: [HttpClientModule,CommonModule, RouterLink],
+  imports: [HttpClientModule,CommonModule, ],
   templateUrl: './produto.component.html',
   styleUrl: './produto.component.css',
   providers: [ProdutoService]
@@ -29,5 +29,9 @@ export class ProdutoComponent {
 
     novo(){
       this.router.navigate(['produtos/novo']);
+    }
+    alterar(produto:Produto){
+      console.log("alterar");
+      this.router.navigate(['produtos/alterar', produto.id]);
     }
 }

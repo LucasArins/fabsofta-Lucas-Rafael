@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import br.univille.projfabsoftcomercio.entity.Carrinho;
+import br.univille.projfabsoftcomercio.entity.Produto;
 import br.univille.projfabsoftcomercio.service.CarrinhoService;
 
 @RestController
@@ -21,6 +22,13 @@ public class CarrinhoController {
     public ResponseEntity<List<Carrinho>> getAll() {
         var lista = service.getAll();
         return new ResponseEntity<>(lista, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Carrinho> getCarrinhoId(@PathVariable Long id) {
+        var carrinho = service.getById(id);
+
+        return new ResponseEntity<Carrinho>(carrinho, HttpStatus.OK);
     }
 
     @PostMapping
