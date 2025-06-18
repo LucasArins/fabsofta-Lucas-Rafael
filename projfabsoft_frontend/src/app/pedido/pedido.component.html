@@ -1,0 +1,16 @@
+<main class="container">
+    <h2>Pedidos</h2>
+    <a (click)="novo()" class="btn btn-primary">Novo</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let umPedido of listaPedidos">
+                <td>{{umPedido.id}}</td>
+            </tr>
+        </tbody>
+    </table>
+</main>
