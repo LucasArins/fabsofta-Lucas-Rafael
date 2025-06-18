@@ -24,4 +24,7 @@ export class CarrinhoService {
   getCarrinhoById(id: any){
     return this.http.get<Carrinho>(this.apiURL + '/' + id);
   }
+  excluirCliente(id: any){
+      return this.http.delete<Carrinho>(this.apiURL + '/' + id);
+    }
 }

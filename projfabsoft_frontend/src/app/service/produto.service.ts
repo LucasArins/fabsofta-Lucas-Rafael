@@ -24,4 +24,7 @@ export class ProdutoService {
   getProdutoById(id: any){
     return this.http.get<Produto>(this.apiURL + '/' + id);
   }
+  excluirCliente(id: any){
+    return this.http.delete<Produto>(this.apiURL + '/' + id);
+  }
 }
