@@ -8,10 +8,10 @@ import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-produto',
-  imports: [HttpClientModule,CommonModule, ],
+  imports: [HttpClientModule,CommonModule],
   templateUrl: './produto.component.html',
   styleUrl: './produto.component.css',
-  providers: [ProdutoService]
+  providers: [ProdutoService, Router]
 })
 export class ProdutoComponent {
 
@@ -36,6 +36,7 @@ export class ProdutoComponent {
     novo(){
       this.router.navigate(['produtos/novo']);
     }
+
     alterar(produto:Produto){
       console.log("alterar");
       this.router.navigate(['produtos/alterar', produto.id]);

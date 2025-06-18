@@ -22,6 +22,7 @@ export class FormProdutoComponent {
       private activeRouter: ActivatedRoute
 
     ){
+      console.log("form alterar");
       const id = this.activeRouter.snapshot.paramMap.get('id');
 
       if (id) {
