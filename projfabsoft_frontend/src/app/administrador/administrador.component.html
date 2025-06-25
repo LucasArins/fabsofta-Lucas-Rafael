@@ -1,1 +1,53 @@
-<p>administrador works!</p>
+<main class="container">
+    <h2>Clientes</h2>
+    <a routerLink="/clientes/novo" class="btn btn-primary">Novo</a> 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>endereco</th>
+                <th>celular</th>
+                <th>id</th>
+                <th>cpf</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let umCliente of listaClientes">
+                <td>{{umCliente.nome}}</td>
+                <td>{{umCliente.endereco}}</td>
+                <td>{{umCliente.celular}}</td>
+                <td>{{umCliente.id}}</td>
+                <td>{{umCliente.cpf}}</td>
+                <td><a (click)="alterar(umCliente)"
+                    class="btn btn-secondary">Alterar</a> 
+                            
+
+                </td>
+                <td><a (click)="alterar(umCliente)" 
+                    class="btn btn-secondary">Alterar</a>
+                    <!--botao excluir -->
+                    <a (click)="abrirConfirmacao(umCliente)" 
+                    class="btn btn-danger">Excluir</a>
+                    <!--botao excluir -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="modal fade" #myModal tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Excluir cliente</h5>
+                </div>
+                <div class="modal-body">
+                Confirma a exclusão do cliente?
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="fecharConfirmacao()">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="confirmarExclusao()">Sim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
