@@ -16,6 +16,15 @@ export class PedidoService {
   }
 
   savePedido(pedido:Pedido){
+    if (pedido.id){
+      return this.http.put(this.apiURL + '/' + pedido.id, pedido);
+    }
     return this.http.post(this.apiURL,pedido);
+  }
+  getPedidoById(id: any){
+    return this.http.get<Pedido>(this.apiURL + '/' + id);
+  }
+  excluirPedido(id: any){
+    return this.http.delete<Pedido>(this.apiURL + '/' + id);
   }
 }

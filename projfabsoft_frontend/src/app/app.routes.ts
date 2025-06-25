@@ -10,11 +10,12 @@ export const routes: Routes = [
     { path: 'produtos', component: ProdutoComponent },
     { path: 'produtos/novo', component: FormProdutoComponent},
     { path: 'produtos/alterar/:id', component: FormProdutoComponent},
+    
     { path: 'carrinhos', component: CarrinhoComponent},
     { path: 'carrinhos/novo', component: FormCarrinhoComponent},
     { path: 'carrinhos/alterar/:id', component: FormCarrinhoComponent},
+    
     { path: 'pedidos', component: PedidoComponent},
     { path: 'pedidos/novo', component: FormPedidoComponent},
-    { path: 'pedidos/alterar/:id', component: FormPedidoComponent}
-
+    { path: 'pedidos/alterar/:id', component: FormPedidoComponent},
 ];

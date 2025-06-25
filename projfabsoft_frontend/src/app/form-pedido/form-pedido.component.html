@@ -10,6 +10,55 @@
                     id="txtNome">
             </div>
         </div>
+        <div class="form-group">
+            <label for="txtCliente">Cliente</label>
+            <select id="txtCliente" [(ngModel)]="pedido.cliente" class="form-select" [compareWith]="comparaClientes">
+                <option *ngFor="let umCliente of listaClientes" [ngValue]="umCliente">{{ umCliente.nome }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="txtProdutos">Produtos</label>
+            <input type="text" [(ngModel)]="pedido.produtos" 
+            class="form-control" id="txtProdutos">
+        </div>
+        <div class="form-group">
+            <label for="txtValo">Valor</label>
+            <input type="text" [(ngModel)]="pedido.total" 
+            class="form-control" id="txtValor">
+        </div>
+
+        <br>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Pedido</h5>
+                <a (click)="incluirProduto()" 
+                    class="btn btn-secondary">Incluir Produto</a>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Preço Unitário</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let umaProduto of produto.pecasTrocadas">
+                            <td>{{umaProduto.codigo}}</td>
+                            <td>{{umaProduto.nome}}</td>
+                            <td>{{umaProduto.precoUnitario}}</td>
+                            <td>
+                                <a (click)="excluirProduto(umProduto)" 
+                                    class="btn btn-danger">Excluir</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- FIM DA ALTERACAO -->
+    </div>
+
         <button (click)="salvar()" 
         class="btn btn-primary">Salvar</button>
     </div>

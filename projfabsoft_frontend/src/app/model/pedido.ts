@@ -5,4 +5,5 @@ export class Pedido {
     id: number;
     cliente: Cliente;
     produtos: Produto[];
+    total: number;
 }
