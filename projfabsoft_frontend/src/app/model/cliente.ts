@@ -1,8 +1,8 @@
 export class Cliente {
-    id:number;
+    id: number;
     nome: string;
+    email: string; // <-- Adicione esta linha
     celular: string;
     cpf: string;
-    endereco: string;
-    
+    enderco: string;
 }

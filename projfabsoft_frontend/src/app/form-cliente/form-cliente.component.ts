@@ -5,10 +5,11 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router,ActivatedRoute,ParamMap } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-form-cliente',
-  imports: [HttpClientModule, CommonModule, FormsModule ,],
+  imports: [HttpClientModule, CommonModule, FormsModule, RouterModule],
   templateUrl: './form-cliente.component.html',
   styleUrl: './form-cliente.component.css',
   providers: [ClienteService, Router]

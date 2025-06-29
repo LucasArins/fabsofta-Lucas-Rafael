@@ -7,10 +7,25 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProdutoService {
-  apiURL= "https://localhost:8080/ap1/v1/produtos";
-  constructor(private http:HttpClient) { }
+  apiURL = "http://localhost:8080/ap1/v1/produto";
+  constructor(private http: HttpClient) { }
 
-  getProdutos(){
+  getProdutos() {
     return this.http.get<Produto[]>(this.apiURL);
+  }
+
+  getProdutoById(id: any) {
+    return this.http.get<Produto>(this.apiURL + '/' + id);
+  }
+
+  saveProduto(produto: Produto) {
+    if (produto.id) {
+      return this.http.put(this.apiURL + '/' + produto.id, produto);
+    }
+    return this.http.post(this.apiURL, produto);
+  }
+
+  excluirProduto(id: any) {
+    return this.http.delete<Produto>(this.apiURL + '/' + id);
   }
 }
