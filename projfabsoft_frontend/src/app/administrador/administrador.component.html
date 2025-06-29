@@ -1,35 +1,23 @@
 <main class="container">
-    <h2>Clientes</h2>
-    <a routerLink="/clientes/novo" class="btn btn-primary">Novo</a> 
+    <h2>Administradores</h2>
+    <a (click)="novo()" class="btn btn-primary">Novo</a>
     <table class="table">
         <thead>
             <tr>
                 <th>Nome</th>
-                <th>endereco</th>
-                <th>celular</th>
-                <th>id</th>
-                <th>cpf</th>
+                <th>Email</th>
+                <th>ID</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let umCliente of listaClientes">
-                <td>{{umCliente.nome}}</td>
-                <td>{{umCliente.endereco}}</td>
-                <td>{{umCliente.celular}}</td>
-                <td>{{umCliente.id}}</td>
-                <td>{{umCliente.cpf}}</td>
-                <td><a (click)="alterar(umCliente)"
-                    class="btn btn-secondary">Alterar</a> 
-                            
-
-                </td>
-                <td><a (click)="alterar(umCliente)" 
-                    class="btn btn-secondary">Alterar</a>
-                    <!--botao excluir -->
-                    <a (click)="abrirConfirmacao(umCliente)" 
-                    class="btn btn-danger">Excluir</a>
-                    <!--botao excluir -->
+            <tr *ngFor="let umAdministrador of listaAdministradores">
+                <td>{{umAdministrador.nome}}</td>
+                <td>{{umAdministrador.email}}</td>
+                <td>{{umAdministrador.id}}</td>
+                <td>
+                    <a (click)="alterar(umAdministrador)" class="btn btn-secondary">Alterar</a>
+                    <a (click)="abrirConfirmacao(umAdministrador)" class="btn btn-danger">Excluir</a>
                 </td>
             </tr>
         </tbody>
@@ -38,14 +26,14 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Excluir cliente</h5>
+                    <h5 class="modal-title">Excluir administrador</h5>
                 </div>
                 <div class="modal-body">
-                Confirma a exclusão do cliente?
+                    Confirma a exclusão do administrador?
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="fecharConfirmacao()">Cancelar</button>
-                <button type="button" class="btn btn-primary" (click)="confirmarExclusao()">Sim</button>
+                    <button type="button" class="btn btn-secondary" (click)="fecharConfirmacao()">Cancelar</button>
+                    <button type="button" class="btn btn-primary" (click)="confirmarExclusao()">Sim</button>
                 </div>
             </div>
         </div>

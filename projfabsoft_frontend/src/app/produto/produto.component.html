@@ -1,6 +1,43 @@
 <main class="container">
-    <h2>Produto</h2>
+    <h2>Produtos</h2>
+    <a (click)="novo()" class="btn btn-primary">Novo</a>
     <table class="table">
-
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Descrição</th>
+                <th>Quantidade em Estoque</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let umProduto of listaProdutos">
+                <td>{{umProduto.nome}}</td>
+                <td>{{umProduto.preco}}</td>
+                <td>{{umProduto.descricao}}</td>
+                <td>{{umProduto.quantidadeEstoque}}</td>
+                <td>
+                    <a (click)="alterar(umProduto)" class="btn btn-secondary">Alterar</a>
+                    <a (click)="abrirConfirmacao(umProduto)" class="btn btn-danger">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
     </table>
+    <div class="modal fade" #myModal tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Excluir Produto</h5>
+                </div>
+                <div class="modal-body">
+                    Confirma a exclusão do produto?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="fecharConfirmacao()">Cancelar</button>
+                    <button type="button" class="btn btn-primary" (click)="confirmarExclusao()">Sim</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>

@@ -1,0 +1,25 @@
+<main class="container">
+    <h2>Produto</h2>
+    <div class="card">
+        <div class="card-body">
+            <div class="form-group mb-3">
+                <label for="txtNome">Nome</label>
+                <input type="text" [(ngModel)]="produto.nome" class="form-control" id="txtNome">
+            </div>
+            <div class="form-group mb-3">
+                <label for="txtPreco">Preço</label>
+                <input type="number" [(ngModel)]="produto.preco" class="form-control" id="txtPreco">
+            </div>
+            <div class="form-group mb-3">
+                <label for="txtDescricao">Descrição</label>
+                <input type="text" [(ngModel)]="produto.descricao" class="form-control" id="txtDescricao">
+            </div>
+            <div class="form-group mb-3">
+                <label for="txtQuantidade">Quantidade em Estoque</label>
+                <input type="number" [(ngModel)]="produto.quantidadeEstoque" class="form-control" id="txtQuantidade">
+            </div>
+            <button (click)="salvar()" class="btn btn-primary mt-3">Salvar</button>
+            <button class="btn btn-secondary mt-3 ms-2" [routerLink]="['/produtos']">Voltar</button>
+        </div>
+    </div>
+</main>
