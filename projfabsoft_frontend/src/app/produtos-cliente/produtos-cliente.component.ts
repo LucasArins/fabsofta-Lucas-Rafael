@@ -4,11 +4,12 @@ import { ProdutoService } from '../service/produto.service';
 import { CarrinhoService } from '../service/carrinho.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-produtos-cliente',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, HttpClientModule],
   templateUrl: './produtos-cliente.component.html',
   styleUrls: ['./produtos-cliente.component.css'],
   providers: [ProdutoService, CarrinhoService]
@@ -28,9 +29,7 @@ export class ProdutosClienteComponent implements OnInit {
   }
 
   adicionarAoCarrinho(produto: Produto) {
-    const clienteId = 1; // Substitua pelo id do cliente logado, se houver autenticação
-    this.carrinhoService.adicionarProdutoAoCarrinho(produto, clienteId).subscribe(() => {
-      alert('Produto adicionado ao carrinho!');
-    });
+    this.carrinhoService.adicionarProduto(produto);
+    alert('Produto adicionado ao carrinho!');
   }
 }
