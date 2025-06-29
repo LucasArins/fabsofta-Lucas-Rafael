@@ -1,29 +1,36 @@
-<main class="container">
-    <h2>Produtos</h2>
-    <a (click)="novo()" class="btn btn-primary">Novo</a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Preço</th>
-                <th>Descrição</th>
-                <th>Quantidade em Estoque</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let umProduto of listaProdutos">
-                <td>{{umProduto.nome}}</td>
-                <td>{{umProduto.preco}}</td>
-                <td>{{umProduto.descricao}}</td>
-                <td>{{umProduto.quantidadeEstoque}}</td>
-                <td>
-                    <a (click)="alterar(umProduto)" class="btn btn-secondary">Alterar</a>
-                    <a (click)="abrirConfirmacao(umProduto)" class="btn btn-danger">Excluir</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<main class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Produtos</h2>
+        <button (click)="novo()" class="btn btn-success">Novo Produto</button>
+    </div>
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Preço</th>
+                        <th>Descrição</th>
+                        <th>Quantidade</th>
+                        <th class="text-end">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let umProduto of listaProdutos">
+                        <td>{{umProduto.nome}}</td>
+                        <td>{{umProduto.preco | currency:'BRL'}}</td>
+                        <td>{{umProduto.descricao}}</td>
+                        <td>{{umProduto.quantidadeEstoque}}</td>
+                        <td class="text-end">
+                            <button (click)="alterar(umProduto)" class="btn btn-outline-primary btn-sm me-2">Alterar</button>
+                            <button (click)="abrirConfirmacao(umProduto)" class="btn btn-outline-danger btn-sm">Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Modal de confirmação -->
     <div class="modal fade" #myModal tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -35,7 +42,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" (click)="fecharConfirmacao()">Cancelar</button>
-                    <button type="button" class="btn btn-primary" (click)="confirmarExclusao()">Sim</button>
+                    <button type="button" class="btn btn-danger" (click)="confirmarExclusao()">Sim</button>
                 </div>
             </div>
         </div>
