@@ -9,6 +9,9 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Cliente } from '../model/cliente';
 import { ClienteService } from '../service/cliente.service';
 
+import { Produto } from '../model/produto';
+import * as bootstrap from 'bootstrap';
+
 @Component({
   selector: 'app-form-pedido',
   imports: [HttpClientModule, CommonModule, FormsModule],
@@ -18,6 +21,10 @@ import { ClienteService } from '../service/cliente.service';
 })
 export class FormPedidoComponent {
     pedido: Pedido = new Pedido();
+
+    produto: Produto = new Produto();
+    @ViewChild('myModalProduto') modalElementProduto!: ElementRef;
+    private modalProduto!: bootstrap.Modal;
 
     public listaClientes:Cliente[] = []; //INCLUIR AQUI
 
@@ -52,5 +59,26 @@ export class FormPedidoComponent {
 
     comparaClientes(obj1: Cliente, obj2: Cliente): boolean {
       return obj1 && obj2 ? obj1.id === obj2.id : obj1 === obj2;
+    }
+
+    incluirProduto() {
+        this.produto = new Produto();
+        this.modalProduto = new bootstrap.Modal(this.modalElementProduto.nativeElement);
+        this.modalProduto.show();
+    }
+    salvaProduto():void {
+        if(this.pedido.produtosTrocados == null) {
+            this.pedido.produtosTrocados = [];
+        }
+        this.pedido.produtosTrocados.push(this.produto);
+        this.modalProduto.hide();
+      }
+      fecharConfirmacaoProduto():void {
+        this.modalProduto.hide();
+      }
+      excluirProduto(produto: Produto): void {
+      this.pedido.produtosTrocados =
+      this.pedido.produtosTrocados.filter((p) => p.id !== produto.id);
+
     }
 }
