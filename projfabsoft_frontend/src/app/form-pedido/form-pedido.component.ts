@@ -27,6 +27,7 @@ export class FormPedidoComponent {
     private modalProduto!: bootstrap.Modal;
 
     public listaClientes:Cliente[] = []; //INCLUIR AQUI
+    private produtoEditando: Produto | null = null; // Variável para armazenar o produto sendo editado
 
     constructor(
       private pedidoService:PedidoService,
@@ -53,7 +54,7 @@ export class FormPedidoComponent {
     salvar(){
       this.pedidoService.savePedido(this.pedido)
         .subscribe(resultado => {
-            this.router.navigate(['pedidos']);
+            this.router.navigateByUrl('/pedidos');
         });
     }
 
@@ -66,19 +67,35 @@ export class FormPedidoComponent {
         this.modalProduto = new bootstrap.Modal(this.modalElementProduto.nativeElement);
         this.modalProduto.show();
     }
-    salvaProduto():void {
-        if(this.pedido.produtosTrocados == null) {
+    salvaProduto(): void {
+        if (!this.pedido.produtosTrocados) {
             this.pedido.produtosTrocados = [];
         }
-        this.pedido.produtosTrocados.push(this.produto);
+        if (this.produtoEditando) {
+            // Atualiza os campos do produto existente
+            Object.assign(this.produtoEditando, this.produto);
+        } else {
+            // Adiciona novo produto
+            this.pedido.produtosTrocados.push(this.produto);
+        }
         this.modalProduto.hide();
-      }
-      fecharConfirmacaoProduto():void {
-        this.modalProduto.hide();
-      }
-      excluirProduto(produto: Produto): void {
-      this.pedido.produtosTrocados =
-      this.pedido.produtosTrocados.filter((p) => p.id !== produto.id);
+    }
 
+    editarProduto(produto: Produto) {
+        // Referencia o produto existente para edição
+        this.produtoEditando = produto;
+        this.produto = { ...produto }; // Cópia para edição no modal
+        this.modalProduto.show();
+    }
+    excluirProduto(produto: Produto) {
+        const index = this.pedido.produtosTrocados.indexOf(produto);
+        if (index > -1) {
+            this.pedido.produtosTrocados.splice(index, 1);
+        }
+    }
+    fecharConfirmacaoProduto() {
+        this.modalProduto.hide();
+        this.produto = new Produto(); // Limpa o produto após fechar o modal
+        this.produtoEditando = null; // Reseta a edição
     }
 }

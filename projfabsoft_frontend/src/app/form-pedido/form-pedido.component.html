@@ -1,27 +1,5 @@
 <main class="container mt-4">
     <h2 class="mb-4">Cadastro de Pedido</h2>
-    <div class="card shadow-sm mb-4">
-        <div class="card-body">
-            <form>
-                <div class="row mb-3">
-                    <div class="col-md-4">
-                        <label for="txtNome" class="form-label">Código do Pedido</label>
-                        <input type="text" [(ngModel)]="pedido.id" class="form-control" id="txtNome" name="id" readonly>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="txtCliente" class="form-label">Cliente</label>
-                        <select id="txtCliente" [(ngModel)]="pedido.cliente" class="form-select" [compareWith]="comparaClientes" name="cliente">
-                            <option *ngFor="let umCliente of listaClientes" [ngValue]="umCliente">{{ umCliente.nome }}</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="txtValor" class="form-label">Valor Total</label>
-                        <input type="number" [(ngModel)]="pedido.total" class="form-control" id="txtValor" name="total">
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
 
     <!-- Produtos do Pedido -->
     <div class="card shadow-sm mb-4">
@@ -48,6 +26,9 @@
                             <td>{{umProduto.preco | currency:'BRL'}}</td>
                             <td>{{umProduto.descricao}}</td>
                             <td>
+                                <button type="button" (click)="editarProduto(umProduto)" class="btn btn-warning btn-sm me-1">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </button>
                                 <button type="button" (click)="excluirProduto(umProduto)" class="btn btn-danger btn-sm">
                                     <i class="bi bi-trash"></i> Excluir
                                 </button>
@@ -70,20 +51,32 @@
                     <h5 class="modal-title">Adicionar Produto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="txtProdutoId" class="form-label">Id</label>
-                        <input type="text" [(ngModel)]="produto.id" class="form-control" id="txtProdutoId" name="produtoId">
-                    </div>
-                    <div class="mb-3">
-                        <label for="txtProdutoNome" class="form-label">Nome</label>
-                        <input type="text" [(ngModel)]="produto.nome" class="form-control" id="txtProdutoNome" name="produtoNome">
-                    </div>
-                    <div class="mb-3">
-                        <label for="txtPecaPreco" class="form-label">Preço Unitário</label>
-                        <input type="number" [(ngModel)]="produto.preco" class="form-control" id="txtPecaPreco" name="produtoPreco">
-                    </div>
-                </div>
+                <!-- ...existing code... -->
+            <div class="modal-body">
+            <div class="mb-3">
+                <label for="txtClienteModal" class="form-label">Cliente</label>
+                <select id="txtClienteModal" [(ngModel)]="pedido.cliente" class="form-select" [compareWith]="comparaClientes" name="clienteModal">
+                <option *ngFor="let umCliente of listaClientes" [ngValue]="umCliente">{{ umCliente.nome }}</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="txtCliente" class="form-label">Cliente</label>
+                <input type="text" class="form-control" id="txtProdutoCliente" name="produtoCliente">
+            </div>
+            <div class="mb-3">
+                <label for="txtProdutoNome" class="form-label">Nome do Produto</label>
+                <input type="text" [(ngModel)]="produto.nome" class="form-control" id="txtProdutoNome" name="produtoNome">
+            </div>
+            <div class="mb-3">
+                <label for="txtProdutoDescricao" class="form-label">Descrição do Produto</label>
+                <input [(ngModel)]="produto.descricao" class="form-control" id="txtProdutoDescricao" name="produtoDescricao">
+            </div>
+            <div class="mb-3">
+                <label for="txtPecaPreco" class="form-label">Preço (R$)</label>
+                <input type="number" [(ngModel)]="produto.preco" class="form-control" id="txtPecaPreco" name="produtoPreco">
+            </div>
+</div>
+<!-- ...existing code... -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" (click)="fecharConfirmacaoProduto()">Cancelar</button>
                     <button type="button" class="btn btn-primary" (click)="salvaProduto()">Salvar</button>
