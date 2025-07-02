@@ -8,3 +8,4 @@ export class Pedido {
     produtosTrocados: Produto[];
     total: number;
 }
+

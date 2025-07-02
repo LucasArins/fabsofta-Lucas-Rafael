@@ -8,63 +8,54 @@ import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-produto',
-  imports: [HttpClientModule,CommonModule],
+
+  imports: [HttpClientModule, CommonModule],
   templateUrl: './produto.component.html',
-  styleUrl: './produto.component.css',
+  styleUrls: ['./produto.component.css'],
+
   providers: [ProdutoService, Router]
 })
 export class ProdutoComponent {
+  public listaProdutos: Produto[] = [];
 
+  @ViewChild('myModal') modalElement!: ElementRef;
+  private modal!: bootstrap.Modal;
+  private produtoSelecionado!: Produto;
 
-      public listaProdutos: Produto[] = [];
-
-      @ViewChild('myModal') modalElement!: ElementRef;
-      private modal!: bootstrap.Modal;
-
-      private produtoSelecionado!: Produto;
-
-    constructor(
-      private produtoService: ProdutoService,
-      private router:Router) {}
-
-    ngOnInit(): void {
-      this.produtoService.getProdutos().subscribe ( produtos => {
-        this.listaProdutos = produtos;
-      });
-    }
-
-    novo(){
-      this.router.navigate(['produtos/novo']);
-    }
-
-    alterar(produto:Produto){
-      console.log("alterar");
-      this.router.navigate(['produtos/alterar', produto.id]);
-    }
-
-    abrirConfirmacao(produto:Produto) {
-      this.produtoSelecionado = produto;
-      this.modal = new bootstrap.Modal(this.modalElement.nativeElement);
-      this.modal.show();
+  constructor(
+    private produtoService: ProdutoService,
+    private router: Router
+  ) {}
+  ngOnInit(): void {
+    this.produtoService.getProdutos().subscribe(produtos => {
+      this.listaProdutos = produtos;
+    });
   }
-  
+  novo() {
+    this.router.navigate(['produtos/novo']);
+  }
+  alterar(produto: Produto) {
+    this.router.navigate(['produtos/alterar', produto.id]);
+  }
+  abrirConfirmacao(produto: Produto) {
+    this.produtoSelecionado = produto;
+    this.modal = new bootstrap.Modal(this.modalElement.nativeElement);
+    this.modal.show();
+  }
   fecharConfirmacao() {
     this.modal.hide();
   }
-
   confirmarExclusao() {
-    this.produtoService.excluirCliente(this.produtoSelecionado.id).subscribe(
-        () => {
-            this.fecharConfirmacao();
-            this.produtoService.getProdutos().subscribe(
-              Produto => {
-                this.listaProdutos = Produto;
-              }
-            );
-        },
-        error => {
-            console.error('Erro ao excluir produto:', error);
-        }
+    this.produtoService.excluirProduto(this.produtoSelecionado.id).subscribe(
+      () => {
+        this.fecharConfirmacao();
+        this.produtoService.getProdutos().subscribe(produtos => {
+          this.listaProdutos = produtos;
+        });
+      },
+      error => {
+        console.error('Erro ao excluir produto:', error);
+      }
     );
-}
+  }
 }

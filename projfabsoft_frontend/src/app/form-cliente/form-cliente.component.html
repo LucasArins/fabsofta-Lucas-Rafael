@@ -1,0 +1,24 @@
+<main class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Cadastro de Cliente</h4>
+        </div>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="txtNome" class="form-label">Nome</label>
+                    <input type="text" [(ngModel)]="cliente.nome" class="form-control" id="txtNome">
+                </div>
+                <div class="col-md-6">
+                    <label for="txtEmail" class="form-label">Email</label>
+                    <input type="email" [(ngModel)]="cliente.email" class="form-control" id="txtEmail">
+                </div>
+                <!-- Adicione outros campos conforme necessário -->
+            </div>
+            <div class="mt-4 d-flex justify-content-end">
+                <button (click)="salvar()" class="btn btn-success me-2">Salvar</button>
+                <button class="btn btn-secondary" [routerLink]="['/clientes']">Voltar</button>
+            </div>
+        </div>
+    </div>
+</main>

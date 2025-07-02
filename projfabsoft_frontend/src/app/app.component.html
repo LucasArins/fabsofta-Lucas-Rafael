@@ -1,1 +1,19 @@
+<div class="app-container d-flex flex-column min-vh-100">
+  <!-- Navbar -->
+  <header>
+    <app-navbar></app-navbar>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main class="content flex-grow-1">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Rodapé (opcional) -->
+  <footer class="mt-auto text-center py-3 bg-light">
+    <p>&copy; 2023 Minha Loja. Todos os direitos reservados.</p>
+  </footer>
+</div>
+
 <router-outlet />
+

@@ -1,21 +1,30 @@
-import { Routes } from '@angular/router';
+import { RouterModule,Routes } from '@angular/router';
+import { ClienteComponent } from './cliente/cliente.component';
+import { FormClienteComponent } from './form-cliente/form-cliente.component';
+import { AdministradorComponent } from './administrador/administrador.component';
+import { FormAdminstradorComponent } from './form-adminstrador/form-adminstrador.component';
 import { ProdutoComponent } from './produto/produto.component';
-import { CarrinhoComponent } from './carrinho/carrinho.component';
 import { FormProdutoComponent } from './form-produto/form-produto.component';
-import { FormCarrinhoComponent } from './form-carrinho/form-carrinho.component';
+import { InicioComponent } from './inicio/inicio.component';
+import { ProdutosClienteComponent } from './produtos-cliente/produtos-cliente.component';
+import { CarrinhoComponent } from './carrinho/carrinho.component';
 import { PedidoComponent } from './pedido/pedido.component';
 import { FormPedidoComponent} from './form-pedido/form-pedido.component'
 
 export const routes: Routes = [
+    { path: '', component: InicioComponent },
+    { path: 'clientes', component: ClienteComponent },
+    { path: 'clientes/novo', component: FormClienteComponent },
+    { path: 'clientes/alterar/:id', component: FormClienteComponent },
+    { path: 'administradores', component: AdministradorComponent },
+    { path: 'administradores/novo', component: FormAdminstradorComponent },
+    { path: 'administradores/alterar/:id', component: FormAdminstradorComponent },
     { path: 'produtos', component: ProdutoComponent },
-    { path: 'produtos/novo', component: FormProdutoComponent},
-    { path: 'produtos/alterar/:id', component: FormProdutoComponent},
-    
-    { path: 'carrinhos', component: CarrinhoComponent},
-    { path: 'carrinhos/novo', component: FormCarrinhoComponent},
-    { path: 'carrinhos/alterar/:id', component: FormCarrinhoComponent},
-    
+    { path: 'produtos/novo', component: FormProdutoComponent },
+    { path: 'produtos/alterar/:id', component: FormProdutoComponent },
+    { path: 'produtos-cliente', component: ProdutosClienteComponent },
+    { path: 'carrinho', component: CarrinhoComponent },   
     { path: 'pedidos', component: PedidoComponent},
     { path: 'pedidos/novo', component: FormPedidoComponent},
     { path: 'pedidos/alterar/:id', component: FormPedidoComponent},
-];
+    ];

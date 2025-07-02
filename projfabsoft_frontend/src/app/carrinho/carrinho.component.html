@@ -1,3 +1,30 @@
+
+<main class="container mt-4">
+  <h2 class="mb-4">Carrinho de Compras</h2>
+  <table class="table" *ngIf="produtosCarrinho.length > 0; else vazio">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let produto of produtosCarrinho">
+        <td>{{ produto.nome }}</td>
+        <td>{{ produto.preco | currency }}</td>
+        <td>
+          <button (click)="remover(produto)" class="btn btn-danger">Remover</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #vazio>
+    <p>O carrinho está vazio.</p>
+  </ng-template>
+  <a routerLink="/produtos-cliente" class="btn btn-outline-primary mt-3">Continuar comprando</a>
+</main>
 <main class="container">
     <h2>Carrinho</h2>
     <a (click)="novo()" class="btn btn-primary">Novo</a>

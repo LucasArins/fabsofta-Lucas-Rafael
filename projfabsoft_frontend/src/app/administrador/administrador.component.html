@@ -1,7 +1,7 @@
 <main class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2>Clientes</h2>
-        <button (click)="novo()" class="btn btn-success">Novo Cliente</button>
+        <h2>Administradores</h2>
+        <button (click)="novo()" class="btn btn-success">Novo Administrador</button>
     </div>
     <div class="card shadow-sm">
         <div class="card-body p-0">
@@ -15,13 +15,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let cliente of listaClientes">
-                        <td>{{cliente.nome}}</td>
-                        <td>{{cliente.email}}</td>
-                        <td>{{cliente.id}}</td>
+                    <tr *ngFor="let umAdministrador of listaAdministradores">
+                        <td>{{umAdministrador.nome}}</td>
+                        <td>{{umAdministrador.email}}</td>
+                        <td>{{umAdministrador.id}}</td>
                         <td class="text-end">
-                            <button (click)="alterar(cliente)" class="btn btn-outline-primary btn-sm me-2">Alterar</button>
-                            <button (click)="abrirConfirmacao(cliente)" class="btn btn-outline-danger btn-sm">Excluir</button>
+                            <button (click)="alterar(umAdministrador)" class="btn btn-outline-primary btn-sm me-2">Alterar</button>
+                            <button (click)="abrirConfirmacao(umAdministrador)" class="btn btn-outline-danger btn-sm">Excluir</button>
                         </td>
                     </tr>
                 </tbody>
@@ -33,10 +33,10 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Excluir Cliente</h5>
+                    <h5 class="modal-title">Excluir Administrador</h5>
                 </div>
                 <div class="modal-body">
-                    Confirma a exclusão do cliente?
+                    Confirma a exclusão do administrador?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" (click)="fecharConfirmacao()">Cancelar</button>

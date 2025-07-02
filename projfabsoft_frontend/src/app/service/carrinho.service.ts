@@ -1,30 +1,38 @@
 import { Injectable } from '@angular/core';
-import { Carrinho } from '../model/carrinho';
-import { HttpClient } from '@angular/common/http';
-
+import { Produto } from '../model/produto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarrinhoService {
-  apiURL = "http://localhost:8080/ap1/v1/carrinho";
-  constructor(private http:HttpClient) { }
 
-  getCarrinho(){
-    return this.http.get<Carrinho[]>(this.apiURL);
+  private produtos: Produto[] = [];
+
+  adicionarProduto(produto: Produto) {
+    // Adiciona o produto ao array, permitindo duplicatas
+    this.produtos.push(produto);
+    console.log('Produto adicionado ao carrinho:', produto);
+    console.log('Estado atual do carrinho:', this.produtos);
   }
 
-  saveCarrinho(carrinho:Carrinho){
-    if (carrinho.id){
-      return this.http.put(this.apiURL + '/' + carrinho.id, carrinho);
-    }
-    return this.http.post(this.apiURL,carrinho);
+  getProdutosCarrinho(): Produto[] {
+    // Retorna todos os produtos no carrinho
+    return this.produtos;
   }
-  
-  getCarrinhoById(id: any){
-    return this.http.get<Carrinho>(this.apiURL + '/' + id);
-  }
-  excluirCliente(id: any){
-      return this.http.delete<Carrinho>(this.apiURL + '/' + id);
+
+  removerProduto(produto: Produto) {
+    // Remove apenas a primeira ocorrência do produto
+    const index = this.produtos.indexOf(produto);
+    if (index > -1) {
+      this.produtos.splice(index, 1);
     }
+    console.log('Produto removido do carrinho:', produto);
+    console.log('Estado atual do carrinho:', this.produtos);
+  }
+
+  limparCarrinho() {
+    // Limpa todos os produtos do carrinho
+    this.produtos = [];
+    console.log('Carrinho limpo.');
+  }
 }

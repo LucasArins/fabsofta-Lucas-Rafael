@@ -1,3 +1,35 @@
+<main class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Cadastro de Produto</h4>
+        </div>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="txtNome" class="form-label">Nome</label>
+                    <input type="text" [(ngModel)]="produto.nome" class="form-control" id="txtNome">
+                </div>
+                <div class="col-md-6">
+                    <label for="txtPreco" class="form-label">Preço</label>
+                    <input type="number" [(ngModel)]="produto.preco" class="form-control" id="txtPreco">
+                </div>
+                <div class="col-md-12">
+                    <label for="txtDescricao" class="form-label">Descrição</label>
+                    <input type="text" [(ngModel)]="produto.descricao" class="form-control" id="txtDescricao">
+                </div>
+                <div class="col-md-6">
+                    <label for="txtQuantidade" class="form-label">Quantidade em Estoque</label>
+                    <input type="number" [(ngModel)]="produto.quantidadeEstoque" class="form-control" id="txtQuantidade">
+                </div>
+            </div>
+            <div class="mt-4 d-flex justify-content-end">
+                <button (click)="salvar()" class="btn btn-success me-2">Salvar</button>
+                <button class="btn btn-secondary" [routerLink]="['/produtos']">Voltar</button>
+            </div>
+        </div>
+    </div>
+</main>
+
 <main class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
@@ -59,3 +91,4 @@
         </div>
     </div>
 </main>
+

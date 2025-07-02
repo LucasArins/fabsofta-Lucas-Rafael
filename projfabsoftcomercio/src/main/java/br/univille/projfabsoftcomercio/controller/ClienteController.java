@@ -71,6 +71,13 @@ public class ClienteController {
        return new ResponseEntity<Cliente>(clienteAntigo, HttpStatus.OK);
     }
 
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Cliente> getClienteId(@PathVariable long id) {
+       var cliente = Service.getById(id);
+        return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
+    }
+        
     @DeleteMapping("/{id}")
     public ResponseEntity<Cliente> deleteCliente(@PathVariable long id){
       if(id <= 0){

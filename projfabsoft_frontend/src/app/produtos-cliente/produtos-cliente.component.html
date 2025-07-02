@@ -1,0 +1,51 @@
+<main class="container my-5">
+  <h2 class="mb-4 text-success fw-bold">Produtos Naturais</h2>
+  <p class="mb-5 text-muted">Conheça nossa seleção de produtos naturais para sua saúde e bem-estar!</p>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let produto of listaProdutos">
+      <div class="card h-100 shadow-sm border-0">
+        <img 
+          *ngIf="produto.imagemUrl; else semImagem"
+          [src]="produto.imagemUrl"
+          class="card-img-top p-3"
+          alt="{{produto.nome}}"
+          style="height: 220px; object-fit: contain; background: #f8f9fa;"
+        >
+        <ng-template #semImagem>
+          <div class="d-flex align-items-center justify-content-center" style="height:220px; background:#f8f9fa;">
+            <span class="text-muted">Sem imagem</span>
+          </div>
+        </ng-template>
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title text-success">{{produto.nome}}</h5>
+          <p class="card-text small text-muted mb-2">{{produto.descricao}}</p>
+          <div class="mt-auto">
+            <div class="fw-bold fs-5 mb-2 text-primary">{{produto.preco | currency:'BRL'}}</div>
+            <button class="btn btn-success w-100" (click)="adicionarAoCarrinho(produto)">
+              <i class="bi bi-cart-plus"></i> Adicionar ao Carrinho
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exemplos de quadrados extras -->
+    <div class="col">
+      <div class="card h-100 shadow-sm border-0 bg-light d-flex align-items-center justify-content-center" style="height: 350px;">
+        <span class="text-muted">Exemplo 1</span>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100 shadow-sm border-0 bg-light d-flex align-items-center justify-content-center" style="height: 350px;">
+        <span class="text-muted">Exemplo 2</span>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100 shadow-sm border-0 bg-light d-flex align-items-center justify-content-center" style="height: 350px;">
+        <span class="text-muted">Exemplo 3</span>
+      </div>
+    </div>
+    <!-- Fim dos quadrados extras -->
+
+  </div>
+</main>
