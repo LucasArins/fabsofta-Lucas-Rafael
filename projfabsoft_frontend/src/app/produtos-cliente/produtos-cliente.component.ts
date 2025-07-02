@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Produto } from '../model/produto';
 import { ProdutoService } from '../service/produto.service';
 import { CarrinhoService } from '../service/carrinho.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-produtos-cliente',
@@ -14,28 +15,47 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrls: ['./produtos-cliente.component.css'],
   providers: [ProdutoService]
 })
-export class ProdutosClienteComponent implements OnInit {
+export class ProdutosClienteComponent implements OnInit, OnDestroy {
   listaProdutos: Produto[] = [];
   produtoAdicionado: string = '';
+  carrinhoCount: number = 0;
+  private subscription: Subscription = new Subscription();
 
   constructor(
     private produtoService: ProdutoService,
-    public carrinhoService: CarrinhoService
+    public carrinhoService: CarrinhoService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    this.produtoService.getProdutos().subscribe(produtos => {
+    // Carrega produtos
+    this.produtoService.getProdutos().subscribe((produtos: Produto[]) => {
       this.listaProdutos = produtos;
+      this.cdr.detectChanges();
     });
+
+    // Subscreve às mudanças do carrinho
+    this.subscription.add(
+      this.carrinhoService.getProdutosCarrinhoObservable().subscribe(produtos => {
+        this.carrinhoCount = produtos.length;
+        this.cdr.detectChanges();
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   adicionarAoCarrinho(produto: Produto): void {
     this.carrinhoService.adicionarProduto(produto);
     this.produtoAdicionado = produto.nome;
+    this.cdr.detectChanges();
     
     // Remove a mensagem após 3 segundos
     setTimeout(() => {
       this.produtoAdicionado = '';
+      this.cdr.detectChanges();
     }, 3000);
   }
 

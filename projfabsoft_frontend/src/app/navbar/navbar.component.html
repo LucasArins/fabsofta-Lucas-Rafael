@@ -50,8 +50,8 @@
           <i class="bi bi-cart3 me-1 fs-5"></i>
           <span class="d-none d-md-inline">Carrinho</span>
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark"
-                *ngIf="carrinhoService.getProdutosCarrinho().length > 0">
-            {{carrinhoService.getProdutosCarrinho().length}}
+                *ngIf="getCarrinhoCount() > 0">
+            {{getCarrinhoCount()}}
             <span class="visually-hidden">itens no carrinho</span>
           </span>
         </a>
