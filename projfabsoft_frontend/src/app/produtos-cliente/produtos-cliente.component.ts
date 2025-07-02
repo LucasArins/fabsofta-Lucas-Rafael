@@ -12,14 +12,15 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [CommonModule, RouterModule, HttpClientModule],
   templateUrl: './produtos-cliente.component.html',
   styleUrls: ['./produtos-cliente.component.css'],
-  providers: [ProdutoService, CarrinhoService]
+  providers: [ProdutoService]
 })
 export class ProdutosClienteComponent implements OnInit {
   listaProdutos: Produto[] = [];
+  produtoAdicionado: string = '';
 
   constructor(
     private produtoService: ProdutoService,
-    private carrinhoService: CarrinhoService
+    public carrinhoService: CarrinhoService
   ) {}
 
   ngOnInit(): void {
@@ -28,8 +29,17 @@ export class ProdutosClienteComponent implements OnInit {
     });
   }
 
-  adicionarAoCarrinho(produto: Produto) {
+  adicionarAoCarrinho(produto: Produto): void {
     this.carrinhoService.adicionarProduto(produto);
-    alert('Produto adicionado ao carrinho!');
+    this.produtoAdicionado = produto.nome;
+    
+    // Remove a mensagem após 3 segundos
+    setTimeout(() => {
+      this.produtoAdicionado = '';
+    }, 3000);
+  }
+
+  getQuantidadeNoCarrinho(produto: Produto): number {
+    return this.carrinhoService.getProdutosCarrinho().filter(p => p.id === produto.id).length;
   }
 }

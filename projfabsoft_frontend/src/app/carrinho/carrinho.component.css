@@ -1,0 +1,67 @@
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.bg-gradient {
+  background: linear-gradient(135deg, #28a745, #20c997) !important;
+}
+
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.card-body .card {
+  transition: all 0.2s ease;
+}
+
+.card-body .card:hover {
+  background-color: #f8f9fa !important;
+}
+
+.badge {
+  font-size: 0.9em;
+}
+
+.text-success {
+  color: #28a745 !important;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  border: none;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #20c997, #28a745);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.btn-outline-success {
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745;
+  border-color: #28a745;
+  transform: translateY(-1px);
+}
+
+.display-1 {
+  font-size: 4rem;
+}
+
+@media (max-width: 768px) {
+  .display-1 {
+    font-size: 3rem;
+  }
+}

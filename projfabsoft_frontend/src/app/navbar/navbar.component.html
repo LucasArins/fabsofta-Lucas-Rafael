@@ -1,8 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">Produtos Naturais</a>
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow">
+  <div class="container">
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold d-flex align-items-center" routerLink="/">
+      <i class="bi bi-leaf me-2 fs-4"></i>
+      <span class="brand-text">Produtos Naturais</span>
+    </a>
+
+    <!-- Mobile toggle -->
     <button
-      class="navbar-toggler"
+      class="navbar-toggler border-0"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#navbarNav"
@@ -12,24 +18,44 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!-- Navigation -->
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/">Início</a>
+          <a class="nav-link px-3" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="bi bi-house me-1"></i>Início
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/clientes">Clientes</a>
+          <a class="nav-link px-3" routerLink="/produtos-cliente" routerLinkActive="active">
+            <i class="bi bi-shop me-1"></i>Loja
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/produtos">Produtos</a>
+          <a class="nav-link px-3" routerLink="/produtos" routerLinkActive="active">
+            <i class="bi bi-box me-1"></i>Produtos
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/produtos-cliente">Produtos-Clientes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/carrinho">Carrinho</a>
+          <a class="nav-link px-3" routerLink="/clientes" routerLinkActive="active">
+            <i class="bi bi-people me-1"></i>Clientes
+          </a>
         </li>
       </ul>
+
+      <!-- Carrinho -->
+      <div class="navbar-nav">
+        <a class="nav-link position-relative px-3" routerLink="/carrinho" routerLinkActive="active">
+          <i class="bi bi-cart3 me-1 fs-5"></i>
+          <span class="d-none d-md-inline">Carrinho</span>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark"
+                *ngIf="carrinhoService.getProdutosCarrinho().length > 0">
+            {{carrinhoService.getProdutosCarrinho().length}}
+            <span class="visually-hidden">itens no carrinho</span>
+          </span>
+        </a>
+      </div>
     </div>
   </div>
 </nav>

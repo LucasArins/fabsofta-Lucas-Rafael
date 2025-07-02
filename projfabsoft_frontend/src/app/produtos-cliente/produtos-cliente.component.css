@@ -1,0 +1,140 @@
+.produto-card {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.produto-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+.produto-card-exemplo {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  min-height: 300px;
+  border: 2px dashed #dee2e6;
+}
+
+.produto-card-exemplo:hover {
+  transform: translateY(-4px);
+  border-color: #28a745;
+  background-color: #f8f9fa !important;
+}
+
+.card-img-top {
+  transition: all 0.3s ease;
+}
+
+.produto-card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-success:hover:not(:disabled) {
+  background: linear-gradient(135deg, #20c997, #28a745);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+}
+
+.btn-success:disabled {
+  background: #6c757d;
+  opacity: 0.6;
+}
+
+.btn-outline-success {
+  border-color: #28a745;
+  color: #28a745;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745;
+  border-color: #28a745;
+  transform: translateY(-2px);
+}
+
+.text-success {
+  color: #28a745 !important;
+}
+
+.text-primary {
+  color: #007bff !important;
+}
+
+.badge {
+  font-size: 0.8em;
+}
+
+.alert {
+  animation: slideDown 0.3s ease;
+  border-radius: 8px;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.display-4 {
+  font-size: 2.5rem;
+}
+
+.display-5 {
+  font-size: 2rem;
+}
+
+.display-6 {
+  font-size: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.1rem;
+}
+
+.lead {
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+@media (max-width: 768px) {
+  .display-4 {
+    font-size: 2rem;
+  }
+  
+  .display-5 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Efeitos especiais */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #28a745, #20c997);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.produto-card:hover::before {
+  opacity: 1;
+}
