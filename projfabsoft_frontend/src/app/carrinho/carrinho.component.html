@@ -1,74 +1,107 @@
 
-<main class="container mt-4">
-  <h2 class="mb-4">Carrinho de Compras</h2>
-  <table class="table" *ngIf="produtosCarrinho.length > 0; else vazio">
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Preço</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let produto of produtosCarrinho">
-        <td>{{ produto.nome }}</td>
-        <td>{{ produto.preco | currency }}</td>
-        <td>
-          <button (click)="remover(produto)" class="btn btn-danger">Remover</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <ng-template #vazio>
-    <p>O carrinho está vazio.</p>
-  </ng-template>
-  <a routerLink="/produtos-cliente" class="btn btn-outline-primary mt-3">Continuar comprando</a>
-</main>
-<main class="container">
-    <h2>Carrinho</h2>
-    <a (click)="novo()" class="btn btn-primary">Novo</a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Preço</th>
-                <th>Descrição</th>
-                <th>Quantidade em Estoque</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let umCarrinho of listaCarrinho">
-                <td>{{umCarrinho.id}}</td>
-                <td>{{umCarrinho.cliente.nome}}</td>
-                <td>{{umCarrinho.produtos}}</td>
-                <td><a (click)="alterar(umCarrinho)"
-                    class="btn btn-secondary">Alterar</a>
-                    &nbsp;
-                    <a (click)="abrirConfirmacao(umCarrinho)" 
-                        class="btn btn-danger">Excluir</a>
-                
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</main>
-
-
-<div class="modal fade" #myModal tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Excluir carrinho</h5>
-            </div>
-            <div class="modal-body">
-            Confirma a exclusão do carrinho?
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" (click)="fecharConfirmacao()">Cancelar</button>
-            <button type="button" class="btn btn-primary" (click)="confirmarExclusao()">Sim</button>
-            </div>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-lg border-0">
+        <div class="card-header bg-gradient text-white text-center py-4" style="background: linear-gradient(135deg, #28a745, #20c997);">
+          <h2 class="mb-0">
+            <i class="bi bi-cart3"></i> Meu Carrinho
+          </h2>
+          <p class="mb-0 opacity-75">{{produtosCarrinho.length}} item(s) no carrinho</p>
         </div>
-    </div>
+        
+        <div class="card-body p-4">
+          <div *ngIf="produtosCarrinho.length > 0; else carrinhoVazio">
+            <!-- Lista de produtos únicos com quantidade -->
+            <div class="row g-3 mb-4">
+              <div class="col-12" *ngFor="let produto of getProdutosUnicos()">
+                <div class="card border-0 bg-light">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-md-3">
+                        <img 
+                          *ngIf="produto.imagemUrl; else semImagem"
+                          [src]="produto.imagemUrl"
+                          class="img-fluid rounded"
+                          [alt]="produto.nome"
+                          style="max-height: 80px; object-fit: cover;"
+                        >
+                        <ng-template #semImagem>
+                          <div class="bg-secondary rounded d-flex align-items-center justify-content-center" style="height: 80px;">
+                            <i class="bi bi-image text-white"></i>
+                          </div>
+                        </ng-template>
+                      </div>
+                      <div class="col-md-5">
+                        <h6 class="mb-1 text-success fw-bold">{{produto.nome}}</h6>
+                        <p class="small text-muted mb-0">{{produto.descricao}}</p>
+                      </div>
+                      <div class="col-md-2 text-center">
+                        <span class="badge bg-primary rounded-pill">
+                          Qtd: {{getQuantidadeProduto(produto)}}
+                        </span>
+                      </div>
+                      <div class="col-md-2 text-end">
+                        <div class="fw-bold text-success">
+                          {{produto.preco * getQuantidadeProduto(produto) | currency:'BRL'}}
+                        </div>
+                        <button 
+                          (click)="remover(produto)" 
+                          class="btn btn-outline-danger btn-sm mt-1"
+                          title="Remover uma unidade"
+                        >
+                          <i class="bi bi-dash-circle"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Total e ações -->
+            <div class="border-top pt-4">
+              <div class="row align-items-center">
+                <div class="col-md-6">
+                  <button 
+                    (click)="limparTudo()" 
+                    class="btn btn-outline-danger"
+                  >
+                    <i class="bi bi-trash"></i> Limpar Carrinho
+                  </button>
+                </div>
+                <div class="col-md-6 text-end">
+                  <h4 class="text-success fw-bold mb-3">
+                    Total: {{calcularTotal() | currency:'BRL'}}
+                  </h4>
+                  <button class="btn btn-success btn-lg px-4">
+                    <i class="bi bi-credit-card"></i> Finalizar Pedido
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carrinho vazio -->
+          <ng-template #carrinhoVazio>
+            <div class="text-center py-5">
+              <i class="bi bi-cart-x display-1 text-muted mb-3"></i>
+              <h4 class="text-muted mb-3">Seu carrinho está vazio</h4>
+              <p class="text-muted mb-4">Explore nossos produtos naturais e adicione itens ao seu carrinho!</p>
+              <a routerLink="/produtos-cliente" class="btn btn-success btn-lg px-4">
+                <i class="bi bi-shop"></i> Continuar Comprando
+              </a>
+            </div>
+          </ng-template>
+        </div>
+
+       <!-- Footer do card -->
+       <div class="card-footer bg-light text-center">
+          <a routerLink="/produtos-cliente" class="btn btn-outline-success">
+            <i class="bi bi-arrow-left"></i> Continuar Comprando
+         </a>
+       </div>
+      </div>
+   </div>
+  </div>
 </div>
