@@ -53,8 +53,8 @@ export class FormPedidoComponent {
 
     salvar(){
       this.pedidoService.savePedido(this.pedido)
-        .subscribe(resultado => {
-            this.router.navigateByUrl('/pedidos');
+        .subscribe(res => {
+            this.router.navigate(['pedidos']);
         });
     }
 

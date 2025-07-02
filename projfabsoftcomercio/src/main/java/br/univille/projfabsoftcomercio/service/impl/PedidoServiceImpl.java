@@ -17,26 +17,23 @@ public class PedidoServiceImpl implements PedidoService {
     private PedidoRepository repository;
 
     @Override
+    public Pedido savePedido(Pedido pedido) {
+        return repository.save(pedido);
+    }
+
+    @Override
     public List<Pedido> getAllPedidos() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllPedidos'");
+        return repository.findAll();
     }
 
     @Override
     public Optional<Pedido> getPedidoById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPedidoById'");
+        return repository.findById(id);
     }
 
-    @Override
-    public Pedido savePedido(Pedido pedido) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'savePedido'");
-    }
 
     @Override
     public void deletePedido(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deletePedido'");
+        repository.deleteById(id);
     }
 }

@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PedidoService {
-  apiURL = "http://localhost:8080/api/v1/pedidos";
+  apiURL = "http://localhost:8080/ap1/v1/pedido";
   
   constructor(private http:HttpClient) { }
 
