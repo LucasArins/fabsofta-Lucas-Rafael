@@ -1,94 +1,147 @@
-<main class="container mt-4">
-    <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
-            <h4 class="mb-0">Cadastro de Produto</h4>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-lg border-0">
+        <div class="card-header bg-gradient text-white text-center py-4" style="background: linear-gradient(135deg, #28a745, #20c997);">
+          <h3 class="mb-0">
+            <i class="bi bi-box"></i>
+            {{produto.id ? 'Editar' : 'Cadastrar'}} Produto
+          </h3>
         </div>
-        <div class="card-body">
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <label for="txtNome" class="form-label">Nome</label>
-                    <input type="text" [(ngModel)]="produto.nome" class="form-control" id="txtNome">
-                </div>
-                <div class="col-md-6">
-                    <label for="txtPreco" class="form-label">Preço</label>
-                    <input type="number" [(ngModel)]="produto.preco" class="form-control" id="txtPreco">
-                </div>
-                <div class="col-md-12">
-                    <label for="txtDescricao" class="form-label">Descrição</label>
-                    <input type="text" [(ngModel)]="produto.descricao" class="form-control" id="txtDescricao">
-                </div>
-                <div class="col-md-6">
-                    <label for="txtQuantidade" class="form-label">Quantidade em Estoque</label>
-                    <input type="number" [(ngModel)]="produto.quantidadeEstoque" class="form-control" id="txtQuantidade">
-                </div>
-            </div>
-            <div class="mt-4 d-flex justify-content-end">
-                <button (click)="salvar()" class="btn btn-success me-2">Salvar</button>
-                <button class="btn btn-secondary" [routerLink]="['/produtos']">Voltar</button>
-            </div>
-        </div>
-    </div>
-</main>
+        
+        <div class="card-body p-4">
+          <!-- Mensagem de erro -->
+          <div class="alert alert-danger alert-dismissible fade show" *ngIf="erroMensagem" role="alert">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            {{erroMensagem}}
+            <button type="button" class="btn-close" (click)="erroMensagem = ''"></button>
+          </div>
 
-<main class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6">
-            <div class="card shadow-lg">
-                <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">Cadastro de Produto</h4>
-                </div>
-                <div class="card-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="txtNome" class="form-label">Nome do Produto</label>
-                            <input type="text"
-                                   [(ngModel)]="produto.nome"
-                                   class="form-control"
-                                   id="txtNome"
-                                   name="nome"
-                                   placeholder="Digite o nome do produto">
-                        </div>
-                        <div class="mb-3">
-                            <label for="txtPreco" class="form-label">Preço (R$)</label>
-                            <input type="number"
-                                   [(ngModel)]="produto.preco"
-                                   class="form-control"
-                                   id="txtPreco"
-                                   name="preco"
-                                   min="0"
-                                   step="0.01"
-                                   placeholder="Digite o preço">
-                        </div>
-                        <div class="mb-3">
-                            <label for="txtDescricao" class="form-label">Descrição</label>
-                            <textarea [(ngModel)]="produto.descricao"
-                                      class="form-control"
-                                      id="txtDescricao"
-                                      name="descricao"
-                                      rows="2"
-                                      placeholder="Descreva o produto"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="txtQuantidade" class="form-label">Quantidade em Estoque</label>
-                            <input type="number"
-                                   [(ngModel)]="produto.quantidadeEstoque"
-                                   class="form-control"
-                                   id="txtQuantidade"
-                                   name="quantidadeEstoque"
-                                   min="0"
-                                   placeholder="Informe a quantidade disponível">
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="button"
-                                    (click)="salvar()"
-                                    class="btn btn-success btn-lg px-4">
-                                <i class="bi bi-check-circle"></i> Salvar
-                            </button>
-                        </div>
-                    </form>
-                </div>
+          <!-- Mensagem de sucesso -->
+          <div class="alert alert-success alert-dismissible fade show" *ngIf="sucessoMensagem" role="alert">
+            <i class="bi bi-check-circle me-2"></i>
+            {{sucessoMensagem}}
+            <button type="button" class="btn-close" (click)="sucessoMensagem = ''"></button>
+          </div>
+
+          <form #produtoForm="ngForm" (ngSubmit)="salvar()">
+            <!-- Nome do Produto -->
+            <div class="mb-3">
+              <label for="nome" class="form-label fw-semibold">
+                <i class="bi bi-tag me-1"></i>Nome do Produto *
+              </label>
+              <input 
+                type="text"
+                [(ngModel)]="produto.nome"
+                class="form-control"
+                id="nome"
+                name="nome"
+                placeholder="Digite o nome do produto"
+                required
+                minlength="2"
+                #nomeField="ngModel">
+              
+              <div class="invalid-feedback" *ngIf="nomeField.invalid && nomeField.touched">
+                <div *ngIf="nomeField.errors?.['required']">Nome é obrigatório</div>
+                <div *ngIf="nomeField.errors?.['minlength']">Nome deve ter pelo menos 2 caracteres</div>
+              </div>
             </div>
+
+            <!-- Preço -->
+            <div class="mb-3">
+              <label for="preco" class="form-label fw-semibold">
+                <i class="bi bi-currency-dollar me-1"></i>Preço (R$) *
+              </label>
+              <input 
+                type="number"
+                [(ngModel)]="produto.preco"
+                class="form-control"
+                id="preco"
+                name="preco"
+                min="0"
+                step="0.01"
+                placeholder="0,00"
+                required
+                #precoField="ngModel">
+              
+              <div class="invalid-feedback" *ngIf="precoField.invalid && precoField.touched">
+                <div *ngIf="precoField.errors?.['required']">Preço é obrigatório</div>
+                <div *ngIf="precoField.errors?.['min']">Preço deve ser maior que zero</div>
+              </div>
+            </div>
+
+            <!-- Descrição -->
+            <div class="mb-3">
+              <label for="descricao" class="form-label fw-semibold">
+                <i class="bi bi-text-paragraph me-1"></i>Descrição
+              </label>
+              <textarea 
+                [(ngModel)]="produto.descricao"
+                class="form-control"
+                id="descricao"
+                name="descricao"
+                rows="3"
+                placeholder="Descreva o produto (opcional)"></textarea>
+            </div>
+
+            <!-- Quantidade em Estoque -->
+            <div class="mb-3">
+              <label for="quantidadeEstoque" class="form-label fw-semibold">
+                <i class="bi bi-boxes me-1"></i>Quantidade em Estoque *
+              </label>
+              <input 
+                type="number"
+                [(ngModel)]="produto.quantidadeEstoque"
+                class="form-control"
+                id="quantidadeEstoque"
+                name="quantidadeEstoque"
+                min="0"
+                placeholder="0"
+                required
+                #estoqueField="ngModel">
+              
+              <div class="invalid-feedback" *ngIf="estoqueField.invalid && estoqueField.touched">
+                <div *ngIf="estoqueField.errors?.['required']">Quantidade é obrigatória</div>
+                <div *ngIf="estoqueField.errors?.['min']">Quantidade não pode ser negativa</div>
+              </div>
+            </div>
+
+            <!-- URL da Imagem -->
+            <div class="mb-4">
+              <label for="imagemUrl" class="form-label fw-semibold">
+                <i class="bi bi-image me-1"></i>URL da Imagem
+              </label>
+              <input 
+                type="url"
+                [(ngModel)]="produto.imagemUrl"
+                class="form-control"
+                id="imagemUrl"
+                name="imagemUrl"
+                placeholder="https://exemplo.com/imagem.jpg">
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="d-flex justify-content-between">
+              <button 
+                type="button"
+                class="btn btn-outline-secondary px-4"
+                [routerLink]="['/produtos']">
+                <i class="bi bi-arrow-left me-2"></i>Voltar
+              </button>
+              
+              <button 
+                type="submit"
+                class="btn btn-success px-4"
+                [disabled]="!produtoForm.valid || salvando">
+                <i class="bi bi-check-circle me-2" *ngIf="!salvando"></i>
+                <span class="spinner-border spinner-border-sm me-2" *ngIf="salvando"></span>
+                {{salvando ? 'Salvando...' : 'Salvar Produto'}}
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-</main>
+  </div>
+</div>
 
