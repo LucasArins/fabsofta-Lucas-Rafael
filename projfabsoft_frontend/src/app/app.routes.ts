@@ -8,6 +8,8 @@ import { FormProdutoComponent } from './form-produto/form-produto.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { ProdutosClienteComponent } from './produtos-cliente/produtos-cliente.component';
 import { CarrinhoComponent } from './carrinho/carrinho.component';
+import { PedidoComponent } from './pedido/pedido.component';
+import { FormPedidoComponent} from './form-pedido/form-pedido.component'
 
 export const routes: Routes = [
     { path: '', component: InicioComponent },
@@ -21,5 +23,8 @@ export const routes: Routes = [
     { path: 'produtos/novo', component: FormProdutoComponent },
     { path: 'produtos/alterar/:id', component: FormProdutoComponent },
     { path: 'produtos-cliente', component: ProdutosClienteComponent },
-    { path: 'carrinho', component: CarrinhoComponent }
-];
+    { path: 'carrinho', component: CarrinhoComponent },   
+    { path: 'pedidos', component: PedidoComponent},
+    { path: 'pedidos/novo', component: FormPedidoComponent},
+    { path: 'pedidos/alterar/:id', component: FormPedidoComponent},
+    ];

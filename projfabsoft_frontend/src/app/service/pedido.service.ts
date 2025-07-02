@@ -1,27 +1,32 @@
 import { Injectable } from '@angular/core';
-import { Produto } from '../model/produto';
+
+import { Pedido } from '../model/pedido';
 import { HttpClient } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProdutoService {
-  apiURL = "http://localhost:8080/ap1/v1/produto";
-  constructor(private http: HttpClient) { }
+export class PedidoService {
+  apiURL = "http://localhost:8080/ap1/v1/pedido";
+  
+  constructor(private http:HttpClient) { }
 
-  getProdutos() {
-    return this.http.get<Produto[]>(this.apiURL);
+  getPedidos(){
+    return this.http.get<Pedido[]>(this.apiURL);
   }
-  saveProduto(produto: Produto) {
-    if (produto.id) {
-      return this.http.put(this.apiURL + '/' + produto.id, produto);
+
+  savePedido(pedido:Pedido){
+    if (pedido.id){
+      return this.http.put(this.apiURL + '/' + pedido.id, pedido);
     }
-    return this.http.post(this.apiURL, produto);
+    return this.http.post(this.apiURL,pedido);
   }
-  getProdutoById(id: any) {
-    return this.http.get<Produto>(this.apiURL + '/' + id);
+  getPedidoById(id: any){
+    return this.http.get<Pedido>(this.apiURL + '/' + id);
   }
-  excluirProduto(id: any) {
-    return this.http.delete<Produto>(this.apiURL + '/' + id);
+  excluirPedido(id: any){
+    return this.http.delete<Pedido>(this.apiURL + '/' + id);
   }
 }
+

@@ -17,10 +17,17 @@ public class ProdutoController {
     @Autowired
     private ProdutoService service;
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<List<Produto>> getAll() {
         var lista = service.getAll();
         return new ResponseEntity<>(lista, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Produto> getProdutoId(@PathVariable Long id) {
+        var produto = service.getById(id);
+
+        return new ResponseEntity<Produto>(produto, HttpStatus.OK);
     }
 
     @PostMapping

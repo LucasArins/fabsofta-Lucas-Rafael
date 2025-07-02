@@ -1,0 +1,93 @@
+<main class="container mt-4">
+    <h2 class="mb-4">Cadastro de Pedido</h2>
+
+    <!-- Produtos do Pedido -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="card-title mb-0">Produtos do Pedido</h5>
+                <button type="button" (click)="incluirProduto()" class="btn btn-outline-primary btn-sm">
+                    <i class="bi bi-plus-circle"></i> Incluir Produto
+                </button>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Nome</th>
+                            <th>Preço</th>
+                            <th>Descrição</th>
+                            <th style="width: 100px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let umProduto of pedido.produtosTrocados">
+                            <td>{{umProduto.nome}}</td>
+                            <td>{{umProduto.preco | currency:'BRL'}}</td>
+                            <td>{{umProduto.descricao}}</td>
+                            <td>
+                                <button type="button" (click)="editarProduto(umProduto)" class="btn btn-warning btn-sm me-1">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </button>
+                                <button type="button" (click)="excluirProduto(umProduto)" class="btn btn-danger btn-sm">
+                                    <i class="bi bi-trash"></i> Excluir
+                                </button>
+                            </td>
+                        </tr>
+                        <tr *ngIf="!pedido.produtosTrocados || pedido.produtosTrocados.length === 0">
+                            <td colspan="4" class="text-center text-muted">Nenhum produto adicionado.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Novo Produto -->
+    <div class="modal fade" #myModalProduto tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Adicionar Produto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <!-- ...existing code... -->
+            <div class="modal-body">
+            <div class="mb-3">
+                <label for="txtClienteModal" class="form-label">Cliente</label>
+                <select id="txtClienteModal" [(ngModel)]="pedido.cliente" class="form-select" [compareWith]="comparaClientes" name="clienteModal">
+                <option *ngFor="let umCliente of listaClientes" [ngValue]="umCliente">{{ umCliente.nome }}</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="txtCliente" class="form-label">Cliente</label>
+                <input type="text" class="form-control" id="txtProdutoCliente" name="produtoCliente">
+            </div>
+            <div class="mb-3">
+                <label for="txtProdutoNome" class="form-label">Nome do Produto</label>
+                <input type="text" [(ngModel)]="produto.nome" class="form-control" id="txtProdutoNome" name="produtoNome">
+            </div>
+            <div class="mb-3">
+                <label for="txtProdutoDescricao" class="form-label">Descrição do Produto</label>
+                <input [(ngModel)]="produto.descricao" class="form-control" id="txtProdutoDescricao" name="produtoDescricao">
+            </div>
+            <div class="mb-3">
+                <label for="txtPecaPreco" class="form-label">Preço (R$)</label>
+                <input type="number" [(ngModel)]="produto.preco" class="form-control" id="txtPecaPreco" name="produtoPreco">
+            </div>
+</div>
+<!-- ...existing code... -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="fecharConfirmacaoProduto()">Cancelar</button>
+                    <button type="button" class="btn btn-primary" (click)="salvaProduto()">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end mt-4">
+        <button (click)="salvar()" class="btn btn-success btn-lg">
+            <i class="bi bi-check-circle"></i> Salvar Pedido
+        </button>
+    </div>
+</main>

@@ -5,4 +5,5 @@ export class Produto {
   preco: number;
   quantidadeEstoque: number;
   imagemUrl?: string; // Adicione esta linha
+
 }

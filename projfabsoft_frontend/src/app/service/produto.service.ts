@@ -7,12 +7,15 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProdutoService {
+
   apiURL = "http://localhost:8080/ap1/v1/produto";
   constructor(private http: HttpClient) { }
+
 
   getProdutos() {
     return this.http.get<Produto[]>(this.apiURL);
   }
+
 
   getProdutoById(id: any) {
     return this.http.get<Produto>(this.apiURL + '/' + id);
@@ -24,7 +27,6 @@ export class ProdutoService {
     }
     return this.http.post(this.apiURL, produto);
   }
-
   excluirProduto(id: any) {
     return this.http.delete<Produto>(this.apiURL + '/' + id);
   }

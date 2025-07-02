@@ -1,11 +1,8 @@
 import { Cliente } from "./cliente";
 import { Produto } from "./produto";
 
-export class Pedido {
+export class Carrinho {
     id: number;
     cliente: Cliente;
     produtos: Produto[];
-    produtosTrocados: Produto[];
-    total: number;
 }
-

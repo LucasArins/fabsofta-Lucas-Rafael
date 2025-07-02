@@ -1,1 +1,52 @@
-<p>pedido works!</p>
+<main class="container">
+    <h2>Pedidos</h2>
+    <a (click)="novo()" class="btn btn-primary">Novo</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Preço</th>
+                <th>Produtos</th>
+                <th>Cliente</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let umPedido of listaPedidos">
+                <td>{{umPedido.id}}</td>
+                <td>{{umPedido.total}}</td>
+                <td>{{umPedido.cliente !== null ? umPedido.cliente.nome : ''}} </td>
+                <td>
+                    <ul>
+                        <li *ngFor="let produto of umPedido.produtos">
+                            {{produto.nome}} - {{produto.preco | currency}}
+                        </li>
+                    </ul>
+                </td>
+                <td>{{umPedido.cliente}}</td>
+                <td><a (click)="alterar(umPedido)"
+                class="btn btn-secondary">Alterar</a>
+                &nbsp;
+                 <a (click)="abrirConfirmacao(umPedido)" 
+    class="btn btn-danger">Excluir</a>
+</td> 
+            </tr>
+        </tbody>
+    </table>
+</main>
+
+<div class="modal fade" #myModal tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir pedido</h5>
+            </div>
+            <div class="modal-body">
+            Confirma a exclusão do pedido?
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="fecharConfirmacao()">Cancelar</button>
+            <button type="button" class="btn btn-primary" (click)="confirmarExclusao()">Sim</button>
+            </div>
+        </div>
+    </div>
+</div>

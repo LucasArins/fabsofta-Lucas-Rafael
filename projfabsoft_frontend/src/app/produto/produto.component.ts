@@ -8,9 +8,11 @@ import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-produto',
+
   imports: [HttpClientModule, CommonModule],
   templateUrl: './produto.component.html',
   styleUrls: ['./produto.component.css'],
+
   providers: [ProdutoService, Router]
 })
 export class ProdutoComponent {
@@ -24,31 +26,25 @@ export class ProdutoComponent {
     private produtoService: ProdutoService,
     private router: Router
   ) {}
-
   ngOnInit(): void {
     this.produtoService.getProdutos().subscribe(produtos => {
       this.listaProdutos = produtos;
     });
   }
-
   novo() {
     this.router.navigate(['produtos/novo']);
   }
-
   alterar(produto: Produto) {
     this.router.navigate(['produtos/alterar', produto.id]);
   }
-
   abrirConfirmacao(produto: Produto) {
     this.produtoSelecionado = produto;
     this.modal = new bootstrap.Modal(this.modalElement.nativeElement);
     this.modal.show();
   }
-
   fecharConfirmacao() {
     this.modal.hide();
   }
-
   confirmarExclusao() {
     this.produtoService.excluirProduto(this.produtoSelecionado.id).subscribe(
       () => {

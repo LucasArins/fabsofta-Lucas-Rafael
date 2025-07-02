@@ -5,6 +5,7 @@ import { Produto } from '../model/produto';
   providedIn: 'root'
 })
 export class CarrinhoService {
+
   private produtos: Produto[] = [];
 
   adicionarProduto(produto: Produto) {
