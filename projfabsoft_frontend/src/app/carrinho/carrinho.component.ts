@@ -14,16 +14,16 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [CarrinhoService]
 })
 export class CarrinhoComponent implements OnInit {
-  produtos: Produto[] = [];
+  produtosCarrinho: Produto[] = [];
 
   constructor(private carrinhoService: CarrinhoService) {}
 
   ngOnInit(): void {
-    this.produtos = this.carrinhoService.getProdutosCarrinho();
+    this.produtosCarrinho = this.carrinhoService.getProdutosCarrinho();
   }
 
   remover(produto: Produto) {
     this.carrinhoService.removerProduto(produto);
-    this.produtos = this.carrinhoService.getProdutosCarrinho();
+    this.produtosCarrinho = this.carrinhoService.getProdutosCarrinho();
   }
 }

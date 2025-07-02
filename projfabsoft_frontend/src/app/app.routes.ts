@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { RouterModule,Routes } from '@angular/router';
 import { ClienteComponent } from './cliente/cliente.component';
 import { FormClienteComponent } from './form-cliente/form-cliente.component';
 import { AdministradorComponent } from './administrador/administrador.component';

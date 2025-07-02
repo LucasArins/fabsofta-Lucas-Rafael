@@ -1,23 +1,24 @@
 <main class="container mt-4">
   <h2 class="mb-4">Carrinho de Compras</h2>
-  <table class="table" *ngIf="produtos.length > 0; else vazio">
+  <table class="table" *ngIf="produtosCarrinho.length > 0; else vazio">
     <thead>
       <tr>
         <th>Nome</th>
         <th>Preço</th>
-        <th></th>
+        <th>Ações</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let produto of produtos">
-        <td>{{produto.nome}}</td>
-        <td>{{produto.preco | currency:'BRL'}}</td>
+      <tr *ngFor="let produto of produtosCarrinho">
+        <td>{{ produto.nome }}</td>
+        <td>{{ produto.preco | currency }}</td>
         <td>
-          <button class="btn btn-danger btn-sm" (click)="remover(produto)">Remover</button>
+          <button (click)="remover(produto)" class="btn btn-danger">Remover</button>
         </td>
       </tr>
     </tbody>
   </table>
+
   <ng-template #vazio>
     <p>O carrinho está vazio.</p>
   </ng-template>
